@@ -1,0 +1,203 @@
+{
+  "project_name": "Goalfinity Dual Vertical Platform (Careers & Institute)",
+  "context_type": "marketing_site_with_admin",
+  "archetype": "Swiss & High-Contrast / Corporate Elite Hybrid",
+  "theme": {
+    "default_mode": "light",
+    "theme_toggle": true,
+    "aesthetic": "Light, ultra-clean, award-worthy corporate design (Awwwards SOTD inspired) with kinetic typography, architectural bento grids, spotlight photography treatments, and subtle glassmorphism."
+  },
+  "brand_identity": {
+    "goalfinity_careers": {
+      "focus": "International Students in USA (OPT/STEM OPT Job Placement & Coaching)",
+      "primary_blue": "#0B3F9E",
+      "bright_blue": "#2480F1",
+      "amber_star": "#F5A623",
+      "background_tint": "#F0F6FF",
+      "badge_style": "bg-blue-50 text-[#0B3F9E] border border-blue-200"
+    },
+    "goalfinity_institute": {
+      "focus": "Indian Students in Ahmedabad & Global Online Learners (100% Career Guarantee)",
+      "navy_blue": "#0F1F5C",
+      "emerald_green": "#1E9A4A",
+      "background_tint": "#F0FDF4",
+      "badge_style": "bg-emerald-50 text-[#1E9A4A] border border-emerald-200"
+    }
+  },
+  "typography": {
+    "heading_font": "Plus Jakarta Sans, sans-serif",
+    "body_font": "Inter, sans-serif",
+    "accent_mono": "JetBrains Mono, monospace",
+    "font_scales": {
+      "h1_hero": "text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1]",
+      "h2_section": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight",
+      "h3_card": "text-xl sm:text-2xl font-semibold tracking-normal",
+      "body_lead": "text-lg text-slate-600 leading-relaxed",
+      "body_standard": "text-base text-slate-600 leading-normal",
+      "label_overline": "text-xs font-mono uppercase tracking-[0.2em]"
+    }
+  },
+  "colors": {
+    "background": "#FAFAFD",
+    "surface": "#FFFFFF",
+    "surface_secondary": "#F4F6FB",
+    "text_primary": "#0F172A",
+    "text_secondary": "#475569",
+    "text_muted": "#64748B",
+    "border_light": "rgba(226, 232, 240, 0.8)",
+    "border_focus": "#2480F1",
+    "accent_careers": "#2480F1",
+    "accent_institute": "#1E9A4A",
+    "warning_star": "#F5A623"
+  },
+  "spacing_and_layout": {
+    "container_padding": "px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto",
+    "section_gap": "py-16 md:py-24",
+    "bento_grid": "grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8",
+    "hero_padding": "pt-32 pb-20 md:pt-40 md:pb-28"
+  },
+  "key_components": {
+    "header_nav": {
+      "style": "sticky top-0 z-50 backdrop-blur-xl bg-white/85 border-b border-slate-200/80 shadow-sm",
+      "elements": [
+        "Brand dual logo (Goalfinity Careers + Goalfinity Institute)",
+        "Nav links: Home, Goalfinity Careers, Goalfinity Institute, About Us, Contact",
+        "Audience Pill Selector in Header (USA Students / Ahmedabad Students)",
+        "CTA Button: 'Enquire Now' -> triggers floating scroll or modal",
+        "Admin Portal Link (Subtle lock icon in header or footer)"
+      ]
+    },
+    "audience_switcher": {
+      "type": "Interactive Toggle Card Bar in Hero",
+      "option_1": {
+        "title": "I am an International Student in USA",
+        "description": "OPT / STEM OPT Placement Support, Resume Architecture & 80-100 Quality Job Applications",
+        "target_vertical": "careers"
+      },
+      "option_2": {
+        "title": "I am a Student in Ahmedabad / India",
+        "description": "100% Career Guarantee Programs, Classroom in Ahmedabad + Online Mode",
+        "target_vertical": "institute"
+      }
+    },
+    "hero_section": {
+      "type": "Kinetic Hero with Line-by-Line Masked Reveal",
+      "primary_vertical_card": "Goalfinity Careers (Large visual focus with gradient beam border)",
+      "secondary_vertical_card": "Goalfinity Institute (Integrated immediately below/alongside with clear green branding)",
+      "interactive_3d_moment": "Interactive Floating Career Radar Node / Glassmorphic Metrics Card using Framer Motion 3D tilt",
+      "cta": ["Enquire for Fees", "Explore USA Careers Journey", "Explore Ahmedabad Institute"]
+    },
+    "editorial_marquee": {
+      "speed": "35s slow drift",
+      "content": [
+        "⚡ 100% Placement Support",
+        "🎓 Harrisonville MO, USA & Ahmedabad, India Offices",
+        "💼 80-100 Quality Applications Guaranteed",
+        "🚀 30+ Industry Features",
+        "✨ IT, Business, Banking & Professional Education Domains",
+        "🌐 Online Mode Available for International Students"
+      ]
+    },
+    "careers_4_step_journey": [
+      {
+        "step": "01",
+        "title": "Onboarding & Profile Building",
+        "desc": "US market resume tailoring, LinkedIn overhaul, ATS compliance optimization, and strategic career roadmap."
+      },
+      {
+        "step": "02",
+        "title": "Job Application Support",
+        "desc": "Direct submissions for 80-100 high-quality job applications tailored to OPT / STEM OPT eligibility."
+      },
+      {
+        "step": "03",
+        "title": "Technical & Interview Support",
+        "desc": "1-on-1 mock technical interviews, behavioral prep, live coding assessments, and domain specific coaching."
+      },
+      {
+        "step": "04",
+        "title": "Post-Placement & 1-Year Support",
+        "desc": "Comprehensive post-placement assistance including re-employment support for up to 1 year."
+      }
+    ],
+    "institute_3_part_program": [
+      {
+        "phase": "Phase 1",
+        "title": "Learning & Industry Skills",
+        "desc": "Hands-on domain training across IT, Business, Banking, and Professional Education."
+      },
+      {
+        "phase": "Phase 2",
+        "title": "Professional & Interview Readiness",
+        "desc": "Soft skills, soft-spoken confidence training, group discussions, and aptitude prep."
+      },
+      {
+        "phase": "Phase 3",
+        "title": "Career & Placement Support (100% Guarantee)",
+        "desc": "Flagship 100% Job Placement guarantee with top Indian employers & global tech firms."
+      }
+    ],
+    "enquiry_form": {
+      "type": "Dual-Vertical Form with Email (Info@goalfinity.co) & Local Storage Inbox Integration",
+      "fields": [
+        "Full Name",
+        "Email Address",
+        "Phone / WhatsApp Number",
+        "Target Vertical Selector (Goalfinity Careers USA / Goalfinity Institute Ahmedabad & Online)",
+        "Domain Interest (IT, Business, Banking, Professional Education)",
+        "Current Qualification / Visa Status",
+        "Message / Specific Query"
+      ],
+      "no_price_policy": "Explicit badge: 'No fixed pricing - Enquire for personalized fee structure'"
+    },
+    "floating_widgets": {
+      "whatsapp": "Floating green WhatsApp button (https://wa.me/...) bottom-right",
+      "call": "Floating Call button with instant dial option",
+      "quick_enquire": "Sticky bottom bar on mobile"
+    },
+    "offices_dual_card": {
+      "usa": "Harrisonville, MO, USA Office (Serving International Students across US Universities)",
+      "india": "Ahmedabad, Gujarat, India Office (Classroom Training & Career Hub)"
+    },
+    "admin_dashboard": {
+      "route": "/admin",
+      "title": "Goalfinity Enquiry Management Console",
+      "features": [
+        "Filter enquiries by Vertical (Careers vs Institute)",
+        "Status tracking (New, Contacted, Enrolled, Archived)",
+        "Date filter, Search query by name or email",
+        "Quick email dispatch trigger to Info@goalfinity.co"
+      ]
+    }
+  },
+  "media": {
+    "image_urls": {
+      "graduates_usa": "https://images.unsplash.com/photo-1627556704353-016baeb12c79?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwyfHxpbnRlcm5hdGlvbmFsJTIwdW5pdmVyc2l0eSUyMHN0dWRlbnQlMjBqb2IlMjBjYXJlZXIlMjBzdWNjZXNzJTIwY29ycG9yYXRlfGVufDB8fHx8MTc5MTQ2Mzc5NXww&ixlib=rb-4.1.0&q=85",
+      "ahmedabad_classroom": "https://images.unsplash.com/photo-1569653402334-2e98fbaa80ee?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHwxfHxzdHVkZW50cyUyMGNvbXB1dGVyJTIwbGFiJTIwc3R1ZHl8ZW58MHx8fHwxNzkxNDYzODAzfDA&ixlib=rb-4.1.0&q=85",
+      "corporate_work": "https://images.unsplash.com/photo-1642522029691-029b5a432954?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODF8MHwxfHNlYXJjaHw0fHxjb3Jwb3JhdGUlMjBwcm9mZXNzaW9uYWwlMjB3b3JraW5nJTIwb2ZmaWNlfGVufDB8fHx8MTc5MTQ2MzgwM3ww&ixlib=rb-4.1.0&q=85",
+      "female_professional": "https://images.unsplash.com/photo-1762341118954-d0ce391674d2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODF8MHwxfHNlYXJjaHwzfHxjb3Jwb3JhdGUlMjBwcm9mZXNzaW9uYWwlMjB3b3JraW5nJTIwb2ZmaWNlfGVufDB8fHx8MTc5MTQ2MzgwM3ww&ixlib=rb-4.1.0&q=85"
+    }
+  },
+  "motion_and_effects": {
+    "smooth_scroll": "Lenis smooth scroll initialized globally",
+    "framer_motion": {
+      "page_transition": "Opacity fade with staggered child entrance",
+      "bento_hover": "Hover lift -translate-y-1.5 with subtle blue/green glow",
+      "scroll_reveal": "Viewport triggers with initial opacity 0, y: 30 to opacity 1, y: 0"
+    }
+  },
+  "testing_and_accessibility": {
+    "data_testid_rules": "All interactive buttons, input fields, links, modal triggers, tab switchers, and metrics MUST contain unambiguous data-testid attributes (e.g. data-testid='careers-hero-enquire-btn', data-testid='audience-switcher-usa').",
+    "accessibility": "WCAG AA contrast compliant text, screen reader friendly labels, keyboard navigable modals."
+  },
+  "instructions_to_main_agent": [
+    "1. Ensure Goalfinity Careers is given primary top prominence on the home page hero while Goalfinity Institute is distinctly presented immediately below it.",
+    "2. Implement the interactive Audience Switcher toggle at the top of the Home page to instantly personalize highlighted benefits for USA students vs Ahmedabad students.",
+    "3. Build multi-page navigation using react-router-dom with distinct routes: '/', '/careers', '/institute', '/about', '/contact', and '/admin'.",
+    "4. Highlight the no-price rule explicitly with 'Enquire for fees' buttons and clear fee enquiry forms that submit to local admin inbox state and show email confirmation to Info@goalfinity.co.",
+    "5. Use brand colors accurately: Careers = Deep Blue #0B3F9E, Bright Blue #2480F1, Star Yellow #F5A623; Institute = Navy #0F1F5C, Green #1E9A4A.",
+    "6. Include floating WhatsApp and Call action buttons across all pages.",
+    "7. Include data-testid attributes on ALL buttons, forms, links, and key sections.",
+    "8. Note that codebase files use standard .js extension."
+  ]
+}

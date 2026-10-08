@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import "lenis/dist/lenis.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #0a1b3d;
+  --ink-soft: #3b4a66;
+  --paper: #f7f9fc;
+  --blue-deep: #0b3f9e;
+  --blue: #2480f1;
+  --blue-tint: #eaf3ff;
+  --amber: #f5a623;
+  --navy: #0f1f5c;
+  --green: #1e9a4a;
+  --green-tint: #eaf7ef;
+  --line: #e3e8f2;
+}
+
+body {
+  margin: 0;
+  font-family: "Hanken Grotesk", system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-display { font-family: "Bricolage Grotesque", "Hanken Grotesk", sans-serif; font-optical-sizing: auto; }
+.font-mono { font-family: "JetBrains Mono", monospace; }
+
+::selection { background: var(--amber); color: var(--ink); }
+
+@layer base {
+  :root {
+    --background: 220 45% 98%;
+    --foreground: 220 72% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 72% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 72% 14%;
+    --primary: 219 87% 33%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 214 100% 96%;
+    --secondary-foreground: 219 87% 33%;
+    --muted: 220 30% 95%;
+    --muted-foreground: 220 20% 38%;
+    --accent: 214 100% 96%;
+    --accent-foreground: 219 87% 33%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 30% 91%;
+    --input: 220 30% 88%;
+    --ring: 213 88% 54%;
+    --radius: 0.9rem;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+}
+
+@layer base {
+  [data-debug-wrapper="true"] { display: contents !important; }
+  [data-debug-wrapper="true"] > * {
+    margin-left: inherit; margin-right: inherit; margin-top: inherit; margin-bottom: inherit;
+    padding-left: inherit; padding-right: inherit; padding-top: inherit; padding-bottom: inherit;
+    column-gap: inherit; row-gap: inherit; gap: inherit;
+    border-left-width: inherit; border-right-width: inherit; border-top-width: inherit; border-bottom-width: inherit;
+    border-left-style: inherit; border-right-style: inherit; border-top-style: inherit; border-bottom-style: inherit;
+    border-left-color: inherit; border-right-color: inherit; border-top-color: inherit; border-bottom-color: inherit;
+  }
+}
