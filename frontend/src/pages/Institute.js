@@ -1,4 +1,5 @@
-import { ArrowRight, Globe2, School } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowRight, ArrowUpRight, Globe2, School } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 import { PageHero } from "../components/site/PageHero";
 import { Reveal, Eyebrow } from "../components/site/Motion";
@@ -24,7 +25,10 @@ const Programs = () => (
           <h3 className="font-display mt-6 text-2xl font-semibold tracking-tight text-[#0F1F5C] sm:text-[28px]">{p.title}</h3>
           <p className="mt-3 flex-1 text-[15px] leading-relaxed text-[#3B4A66]">{p.desc}</p>
           <p className="mt-5 border-t border-[#E3E8F2] pt-4 text-sm text-[#0F1F5C]">{p.includes}</p>
-          <button onClick={() => scrollToId("enquire")} data-testid={`institute-program-${p.key}-fees-btn`} className="mt-5 inline-flex items-center gap-2 self-start rounded-full bg-[#0F1F5C] px-5 py-3 text-sm font-semibold text-white transition-[background-color] duration-300 hover:bg-[#1E9A4A]">Enquire for fees <ArrowRight className="h-4 w-4" /></button>
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <Link to={`/institute/programs/${p.slug}`} data-testid={`institute-program-${p.key}-details-link`} className="inline-flex items-center gap-2 rounded-full bg-[#0F1F5C] px-5 py-3 text-sm font-semibold text-white transition-[background-color] duration-300 hover:bg-[#1E9A4A]">Syllabus & schedule <ArrowUpRight className="h-4 w-4" /></Link>
+            <button onClick={() => scrollToId("enquire")} data-testid={`institute-program-${p.key}-fees-btn`} className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1E9A4A]">Enquire for fees <ArrowRight className="h-4 w-4" /></button>
+          </div>
         </div>
       </Reveal>
     ))}

@@ -21,8 +21,8 @@ const Success = ({ onReset }) => (
   </motion.div>
 );
 
-export const EnquiryForm = ({ defaultVertical = "careers" }) => {
-  const init = { name: "", email: "", phone: "", vertical: defaultVertical, interest: "", location: defaultVertical === "careers" ? "USA" : "India", message: "" };
+export const EnquiryForm = ({ defaultVertical = "careers", defaultInterest = "" }) => {
+  const init = { name: "", email: "", phone: "", vertical: defaultVertical, interest: defaultInterest, location: defaultVertical === "careers" ? "USA" : "India", message: "" };
   const [form, setForm] = useState(init);
   const [state, setState] = useState({ loading: false, error: "", done: false });
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));

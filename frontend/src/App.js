@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Careers from "./pages/Careers";
 import Institute from "./pages/Institute";
 import Contact from "./pages/Contact";
+import ProgramDetail from "./pages/ProgramDetail";
 import AdminLogin from "./pages/AdminLogin";
 import AdminInbox from "./pages/AdminInbox";
 
@@ -24,6 +25,7 @@ const Shell = () => {
         <Route path="/" element={<Home />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/institute" element={<Institute />} />
+        <Route path="/institute/programs/:slug" element={<ProgramDetail />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminInbox />} />

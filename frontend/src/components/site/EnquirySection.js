@@ -4,7 +4,7 @@ import { Reveal, Eyebrow } from "./Motion";
 import { EnquiryForm } from "./EnquiryForm";
 import { CONTACT } from "../../data/content";
 
-export const EnquirySection = ({ defaultVertical = "careers", title = "Let's start your journey.", id = "enquire" }) => (
+export const EnquirySection = ({ defaultVertical = "careers", defaultInterest = "", title = "Let's start your journey.", id = "enquire" }) => (
   <section id={id} data-testid="enquiry-section" className="relative mx-auto max-w-[1360px] px-5 py-20 sm:px-8 md:py-28">
     <div className="grid gap-10 rounded-[36px] border border-[#E3E8F2] bg-white p-6 sm:p-10 lg:grid-cols-12 lg:gap-14 lg:p-14">
       <Reveal className="lg:col-span-5">
@@ -19,7 +19,7 @@ export const EnquirySection = ({ defaultVertical = "careers", title = "Let's sta
         <Link to="/contact" data-testid="enquiry-section-contact-link" className="mt-8 inline-flex items-center gap-1 text-sm font-semibold text-[#0A1B3D]">All contact options <ArrowUpRight className="h-4 w-4" /></Link>
       </Reveal>
       <Reveal delay={0.1} className="lg:col-span-7">
-        <EnquiryForm defaultVertical={defaultVertical} />
+        <EnquiryForm defaultVertical={defaultVertical} defaultInterest={defaultInterest} />
       </Reveal>
     </div>
   </section>

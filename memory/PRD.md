@@ -21,6 +21,8 @@ User choices: enquiry form saved to admin inbox + emailed to Info@goalfinity.co,
 - Institute page: classroom/online modes, 3 programs (from goalfinity.co), 30 numbered features, journey, FAQ, enquiry
 - Contact page, floating WhatsApp/Call menu (USA + India), footer with socials + both logos
 - Admin login + inbox (filter by vertical, status update, delete, email status)
+- Placement stories wall (SAMPLE data, data/stories.js): home = all, Careers page = careers only, Institute page = institute + online
+- Program detail pages /institute/programs/:slug (syllabus 5 phases, tools, batch schedule, outcomes, enquiry pre-filled with program) — SAMPLE syllabus/schedule in data/programDetails.js
 
 ## Backlog
 - P1: Testimonials / placement stories (need real content from client)

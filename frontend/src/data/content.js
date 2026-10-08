@@ -157,6 +157,7 @@ export const INSTITUTE_PARTS = [
 export const PROGRAMS = [
   {
     key: "ai",
+    slug: "ai-engineer-data-science",
     title: "AI Engineer & Data Science",
     tag: "IT",
     desc: "Python, Data Science, Machine Learning, Generative AI, LLMs and AI application development.",
@@ -164,6 +165,7 @@ export const PROGRAMS = [
   },
   {
     key: "ib",
+    slug: "investment-banking-financial-analytics",
     title: "Investment Banking & Financial Analytics",
     tag: "Banking",
     desc: "Financial Modelling, Valuation, Investment Banking, Equity Research, M&A and Financial Analytics.",
@@ -171,6 +173,7 @@ export const PROGRAMS = [
   },
   {
     key: "dm",
+    slug: "digital-marketing-content-ai",
     title: "Digital Marketing, Content Creation & AI",
     tag: "Business",
     desc: "Digital Marketing, SEO, Social Media, Performance Marketing, Content Creation, Analytics and AI-powered marketing.",

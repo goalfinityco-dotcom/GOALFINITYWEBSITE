@@ -19,7 +19,7 @@ const PartCard = ({ part, i }) => (
 
 const ProgramRow = ({ p, i }) => (
   <Reveal delay={i * 0.06}>
-    <Link to="/institute" data-testid={`home-program-${p.key}`} className="group flex items-center justify-between gap-6 border-t border-[#CFE9D8] py-6">
+    <Link to={`/institute/programs/${p.slug}`} data-testid={`home-program-${p.key}`} className="group flex items-center justify-between gap-6 border-t border-[#CFE9D8] py-6">
       <div className="flex items-baseline gap-5">
         <span className="font-mono text-xs text-[#1E9A4A]">0{i + 1}</span>
         <div>
