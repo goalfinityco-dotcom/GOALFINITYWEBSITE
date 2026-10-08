@@ -3,6 +3,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "..
 import { PageHero } from "../components/site/PageHero";
 import { Reveal, Eyebrow } from "../components/site/Motion";
 import { EnquirySection } from "../components/site/EnquirySection";
+import { PlacementStories } from "../components/home/PlacementStories";
 import { scrollToId } from "../components/site/SmoothScroll";
 import { INSTITUTE_PARTS, PROGRAMS, JOURNEY, INSTITUTE_FAQ } from "../data/content";
 
@@ -90,6 +91,7 @@ export default function Institute() {
           ))}
         </Accordion>
       </section>
+      <PlacementStories tid="institute-stories-section" types={["institute", "online"]} title={<>Learners in Ahmedabad and online, <span className="text-[#1E9A4A]">now career-ready.</span></>} lead="Classroom and online students who completed a Goalfinity Institute program and moved into the roles they trained for." />
       <EnquirySection defaultVertical="institute" title="Ready to build your career with Goalfinity?" />
     </main>
   );

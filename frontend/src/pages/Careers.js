@@ -3,6 +3,7 @@ import { PageHero } from "../components/site/PageHero";
 import { Reveal, Eyebrow } from "../components/site/Motion";
 import { EnquirySection } from "../components/site/EnquirySection";
 import { Marquee } from "../components/site/Marquee";
+import { PlacementStories } from "../components/home/PlacementStories";
 import { scrollToId } from "../components/site/SmoothScroll";
 import { CAREERS_PILLARS } from "../data/content";
 
@@ -65,6 +66,7 @@ export default function Careers() {
         {CAREERS_PILLARS.map((p, i) => <Pillar key={p.no} p={p} i={i} />)}
         <p className="border-t border-[#E3E8F2] pt-6 text-sm text-[#3B4A66]">*Re-employment support applies if the job is lost within the applicable 1-year service period. Additional support is available as an add-on.</p>
       </section>
+      <PlacementStories tid="careers-stories-section" types={["careers"]} title={<>International students, <span className="text-[#2480F1]">now hired in the US.</span></>} lead="F-1 graduates on OPT and STEM OPT who landed roles across the US with Goalfinity Careers." />
       <EnquirySection defaultVertical="careers" title="Let's start your US career journey." />
     </main>
   );

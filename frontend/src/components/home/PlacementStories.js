@@ -36,27 +36,36 @@ const Row = ({ items, reverse, offset }) => (
     <div className={`marquee-track items-stretch ${reverse ? "marquee-reverse" : ""}`} style={{ animationDuration: "80s" }}>
       {[0, 1].map((k) => (
         <div key={k} className="flex items-stretch" aria-hidden={k === 1}>
-          {items.map((s, i) => <StoryCard key={s.name} s={s} idx={k === 0 ? offset + i : `dup-${offset + i}`} />)}
+          {items.map((s, i) => <StoryCard key={`${s.name}-${i}`} s={s} idx={k === 0 ? offset + i : `dup-${offset + i}`} />)}
         </div>
       ))}
     </div>
   </div>
 );
 
-export const PlacementStories = () => {
-  const half = Math.ceil(STORIES.length / 2);
+const DEFAULT_LEAD = "International students across the US and learners in Ahmedabad and online, now working in roles they trained and prepared for with Goalfinity.";
+
+export const PlacementStories = ({ types, title, lead = DEFAULT_LEAD, tid = "placement-stories-section" }) => {
+  const list = types ? STORIES.filter((s) => types.includes(s.type)) : STORIES;
+  const half = Math.ceil(list.length / 2);
   return (
-    <section data-testid="placement-stories-section" className="relative py-20 md:py-28">
+    <section data-testid={tid} className="relative py-20 md:py-28">
       <Reveal className="mx-auto mb-12 grid max-w-[1360px] gap-6 px-5 sm:px-8 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-7">
           <Eyebrow tone="amber">Placement stories</Eyebrow>
-          <h2 className="font-display mt-5 text-4xl font-semibold leading-[1.02] tracking-tight sm:text-6xl">From classrooms and campuses <span className="text-[#2480F1]">to offer letters.</span></h2>
+          <h2 className="font-display mt-5 text-4xl font-semibold leading-[1.02] tracking-tight sm:text-6xl">{title || <>From classrooms and campuses <span className="text-[#2480F1]">to offer letters.</span></>}</h2>
         </div>
-        <p className="text-[17px] leading-relaxed text-[#3B4A66] lg:col-span-5">International students across the US and learners in Ahmedabad and online, now working in roles they trained and prepared for with Goalfinity.</p>
+        <p className="text-[17px] leading-relaxed text-[#3B4A66] lg:col-span-5">{lead}</p>
       </Reveal>
       <div className="[mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
-        <Row items={STORIES.slice(0, half)} offset={0} />
-        <Row items={STORIES.slice(half)} offset={half} reverse />
+        {types ? (
+          <Row items={[...list, ...list]} offset={0} />
+        ) : (
+          <>
+            <Row items={list.slice(0, half)} offset={0} />
+            <Row items={list.slice(half)} offset={half} reverse />
+          </>
+        )}
       </div>
     </section>
   );
