@@ -7,7 +7,7 @@ import { NextSteps } from "./ThankYou";
 
 const VERTICALS = [
   { id: "careers", label: "Goalfinity Careers", sub: "I'm in the USA (F-1 / OPT / STEM OPT)", ring: "ring-[#2480F1] bg-[#EAF3FF]", dot: "bg-[#2480F1]" },
-  { id: "institute", label: "Goalfinity Institute", sub: "Classroom in Ahmedabad or online", ring: "ring-[#1E9A4A] bg-[#EAF7EF]", dot: "bg-[#1E9A4A]" },
+  { id: "institute", label: "Goalfinity Institute", sub: "Classroom or online", ring: "ring-[#1E9A4A] bg-[#EAF7EF]", dot: "bg-[#1E9A4A]" },
   { id: "unsure", label: "Not sure yet", sub: "Help me choose the right path", ring: "ring-[#F5A623] bg-[#FFF6E5]", dot: "bg-[#F5A623]" },
 ];
 const LOCATIONS = ["USA", "India", "Other country"];

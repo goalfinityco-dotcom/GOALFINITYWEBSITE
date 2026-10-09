@@ -43,13 +43,13 @@ export const FOUNDER = {
   image: "/media/founder-mithil-shah.jpg",
   stats: [
     { v: "17+", l: "Years of EdTech & placement experience" },
-    { v: "10,000+", l: "Students supported with placements" },
+    { v: "10,000+", l: "Students supported globally with placements" },
   ],
   message: [
     "At Goalfinity, my vision has always been to bridge the gap between education, skills, and meaningful career opportunities.",
     "With over 17 years of experience in the EdTech and placement industry, I have developed a deep understanding of the disconnect between what students learn, what employers expect, and what the industry demands. I believe that education creates real value when it prepares individuals for opportunities beyond the classroom.",
     "Having worked closely with students and placement teams, I understand the challenges international students in the United States face while navigating the job market. From identifying the right opportunities to preparing for interviews and understanding employer expectations, the journey can often feel overwhelming.",
-    "This is why Goalfinity Careers places special emphasis on supporting international students in the USA through career guidance, job-search support, and placement services. Having contributed to the placement journeys of over 10,000 students, I believe every student deserves guidance, encouragement, and a fair opportunity to demonstrate their potential.",
+    "This is why Goalfinity Careers places special emphasis on supporting international students in the USA through career guidance, job-search support, and placement services. Having contributed to the placement journeys of over 10,000 students globally, I believe every student deserves guidance, encouragement, and a fair opportunity to demonstrate their potential.",
     "My approach has always been guided by three principles: ethical practices, honest commitments, and a genuine willingness to help. I believe in setting clear expectations, standing by our commitments, and continuously improving the support we provide.",
     "At Goalfinity, our goal is not simply to provide a service. It is to become a trusted partner in every student's journey of learning, growth, and career development.",
   ],

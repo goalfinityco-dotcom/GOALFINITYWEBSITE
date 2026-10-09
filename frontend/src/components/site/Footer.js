@@ -30,7 +30,7 @@ export const Footer = () => (
             <span className="h-10 w-px bg-[#E3E8F2]" />
             <InstituteLogo className="h-12" />
           </div>
-          <p className="mt-8 max-w-md text-[15px] leading-relaxed text-white/75">Goalfinity Group brings together education and career development: Goalfinity Careers supports international students into US jobs, and Goalfinity Institute builds career-ready professionals in Ahmedabad and online.</p>
+          <p className="mt-8 max-w-md text-[15px] leading-relaxed text-white/75">Goalfinity Group brings together education and career development: Goalfinity Careers supports international students into US jobs, and Goalfinity Institute builds career-ready professionals in classroom and online.</p>
           <a href={`mailto:${CONTACT.email}`} data-testid="footer-email-link" className="mt-6 inline-flex items-center gap-2 text-lg font-semibold"><Mail className="h-5 w-5 text-[#F5A623]" /><span className="link-underline">{CONTACT.email}</span></a>
         </div>
         <div className="grid gap-10 sm:grid-cols-2 lg:col-span-5">

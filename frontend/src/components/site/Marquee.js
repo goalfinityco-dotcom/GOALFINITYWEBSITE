@@ -4,7 +4,7 @@ const ITEMS = [
   "OPT & STEM OPT guidance",
   "80–100 quality job applications",
   "Live interview mentorship",
-  "Classroom coaching in Ahmedabad",
+  "Classroom coaching",
   "Online mode, anywhere in the world",
   "Dedicated placement assistance",
   "IT · Business · Banking · Professional Education",

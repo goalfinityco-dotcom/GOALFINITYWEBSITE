@@ -1,7 +1,7 @@
 export const SCHEDULES = [
-  { mode: "Classroom · Ahmedabad", batch: "Weekday batch", days: "Mon – Fri", time: "10:00 AM – 12:00 PM IST" },
-  { mode: "Classroom · Ahmedabad", batch: "Evening batch", days: "Mon · Wed · Fri", time: "7:00 PM – 9:30 PM IST" },
-  { mode: "Classroom · Ahmedabad", batch: "Weekend batch", days: "Sat – Sun", time: "10:00 AM – 1:30 PM IST" },
+  { mode: "Classroom", batch: "Weekday batch", days: "Mon – Fri", time: "10:00 AM – 12:00 PM IST" },
+  { mode: "Classroom", batch: "Evening batch", days: "Mon · Wed · Fri", time: "7:00 PM – 9:30 PM IST" },
+  { mode: "Classroom", batch: "Weekend batch", days: "Sat – Sun", time: "10:00 AM – 1:30 PM IST" },
   { mode: "Online · Live", batch: "US-friendly batch", days: "Sat – Sun", time: "9:00 AM – 12:00 PM CT (7:30 PM – 10:30 PM IST)" },
 ];
 

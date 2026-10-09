@@ -52,9 +52,9 @@ const COURSE_BASE = [
 ];
 
 export const COURSE_CITIES = [
-  { slug: "ahmedabad", city: "Ahmedabad", mode: "Attend in classroom on Science City Road, Ahmedabad, or join the same program online.", access: "Easy to reach from Sola, Science City, Thaltej, Gota, Bodakdev, SG Highway, Vastrapur and Chandlodia." },
-  { slug: "gandhinagar", city: "Gandhinagar", mode: "Students from Gandhinagar can attend classroom sessions at our Ahmedabad centre, a short drive along SG Highway, or learn live online.", access: "From Gandhinagar, head towards Ahmedabad on SG Highway; the centre is on Science City Road near Sola Overbridge." },
-  { slug: "vadodara", city: "Vadodara", mode: "Students in Vadodara can learn live online with the same mentors and projects, or attend classroom sessions at our Ahmedabad centre.", access: "Vadodara students can join the live online batch, or attend classroom sessions at our Ahmedabad centre on Science City Road." },
+  { slug: "ahmedabad", city: "Ahmedabad", mode: "Attend in classroom or join the same program online.", access: "Easy to reach from Sola, Science City, Thaltej, Gota, Bodakdev, SG Highway, Vastrapur and Chandlodia." },
+  { slug: "gandhinagar", city: "Gandhinagar", mode: "Students from Gandhinagar can attend classroom sessions or learn live online.", access: "From Gandhinagar, head towards Ahmedabad on SG Highway; the centre is on Science City Road near Sola Overbridge." },
+  { slug: "vadodara", city: "Vadodara", mode: "Students in Vadodara can learn live online with the same mentors and projects, or attend classroom sessions.", access: "Vadodara students can join the live online batch, or attend classroom sessions." },
 ];
 
 export const INSTITUTE_COURSES_LOCAL = COURSE_CITIES.flatMap((c) => COURSE_BASE.map((b) => ({

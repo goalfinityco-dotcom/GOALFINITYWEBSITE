@@ -4,7 +4,7 @@ import { STORIES } from "../../data/stories";
 
 const TONES = {
   careers: { chip: "bg-[#EAF3FF] text-[#0B3F9E]", avatar: "bg-[#0B3F9E]", label: "Careers · USA" },
-  institute: { chip: "bg-[#EAF7EF] text-[#146B34]", avatar: "bg-[#1E9A4A]", label: "Institute · Ahmedabad" },
+  institute: { chip: "bg-[#EAF7EF] text-[#146B34]", avatar: "bg-[#1E9A4A]", label: "Institute · Classroom" },
   online: { chip: "bg-[#FFF6E5] text-[#8A5300]", avatar: "bg-[#0F1F5C]", label: "Institute · Online" },
 };
 
@@ -43,7 +43,7 @@ const Row = ({ items, reverse, offset }) => (
   </div>
 );
 
-const DEFAULT_LEAD = "International students across the US and learners in Ahmedabad and online, now working in roles they trained and prepared for with Goalfinity.";
+const DEFAULT_LEAD = "International students across the US and learners in classroom and online, now working in roles they trained and prepared for with Goalfinity.";
 
 export const PlacementStories = ({ types, title, lead = DEFAULT_LEAD, tid = "placement-stories-section" }) => {
   const list = types ? STORIES.filter((s) => types.includes(s.type)) : STORIES;

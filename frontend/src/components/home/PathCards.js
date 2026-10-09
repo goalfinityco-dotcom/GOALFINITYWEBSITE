@@ -34,12 +34,12 @@ export const PathCards = () => (
         <Link to="/institute" data-testid="path-card-institute" className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[30px] border border-[#CFE9D8] bg-white p-7 sm:p-9">
           <div className="absolute -bottom-20 -right-20 h-56 w-56 rounded-full bg-[#EAF7EF] transition-transform duration-700 group-hover:scale-125" />
           <div className="relative">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#1E9A4A]">02 · India & Online</span>
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#1E9A4A]">02 · Classroom & Online</span>
             <h3 className="font-display mt-4 text-3xl font-semibold tracking-tight text-[#0F1F5C] sm:text-4xl">Goalfinity Institute</h3>
-            <p className="mt-3 text-[15px] leading-relaxed text-[#3B4A66]">For students in Ahmedabad — and online worldwide: 6-month career programs with dedicated placement assistance.</p>
+            <p className="mt-3 text-[15px] leading-relaxed text-[#3B4A66]">Learn in classroom or online, from anywhere: 6-month career programs with dedicated placement assistance.</p>
           </div>
           <div className="relative mt-8 flex flex-wrap items-center justify-between gap-4">
-            <div className="flex flex-wrap gap-2"><Chip icon={GraduationCap}>Classroom · Ahmedabad</Chip><Chip icon={Globe2}>Online mode</Chip></div>
+            <div className="flex flex-wrap gap-2"><Chip icon={GraduationCap}>Classroom</Chip><Chip icon={Globe2}>Online mode</Chip></div>
             <span className="grid h-12 w-12 place-items-center rounded-full bg-[#1E9A4A] text-white transition-transform duration-500 group-hover:rotate-45"><ArrowUpRight className="h-5 w-5" /></span>
           </div>
         </Link>

@@ -69,7 +69,7 @@ export const HomeHero = () => (
             <MaskLines lines={[GROUP.tagline[0], <span key="c" className="text-[#C98A00]">{GROUP.tagline[1]}</span>, GROUP.tagline[2]]} delay={0.15} />
           </h1>
           <motion.p {...fade(0.6)} className="mt-7 max-w-xl text-[17px] leading-relaxed text-[#3B4A66] sm:text-lg">
-            One group, two clear paths. Goalfinity Careers supports international students in the USA into the right jobs, and Goalfinity Institute builds career-ready skills in Ahmedabad and online.
+            One group, two clear paths. Goalfinity Careers supports international students in the USA into the right jobs, and Goalfinity Institute builds career-ready skills in classroom and online.
           </motion.p>
           <motion.div {...fade(0.75)} className="mt-9 flex flex-wrap gap-3">
             <button onClick={() => scrollToId("journey")} data-testid="hero-choose-journey-btn" className="group inline-flex items-center gap-3 rounded-full bg-[#0B3F9E] px-7 py-4 text-[15px] font-semibold text-white shadow-[0_16px_40px_-14px_rgba(11,63,158,0.8)] transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-[#2480F1]">

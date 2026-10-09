@@ -6,7 +6,7 @@
 - [Home](https://www.goalfinity.co/): Goalfinity Group overview, about, vision, mission and founder's message
 - [About](https://www.goalfinity.co/about): About Goalfinity Group, vision, mission and founder Mithil Shah
 - [Goalfinity Careers](https://www.goalfinity.co/careers): 4-stage career support for international students in the USA: profile building, job applications, technical and interview support, re-employment support; OPT / STEM OPT guidance
-- [Goalfinity Institute](https://www.goalfinity.co/institute): Classroom coaching in Ahmedabad and online programs with placement assistance
+- [Goalfinity Institute](https://www.goalfinity.co/institute): Classroom coaching and online programs with placement assistance
 - [AI Engineer & Data Science](https://www.goalfinity.co/institute/programs/ai-engineer-data-science): Python, data science, machine learning, generative AI and LLMs
 - [Investment Banking & Financial Analytics](https://www.goalfinity.co/institute/programs/investment-banking-financial-analytics): Financial modelling, valuation, equity research, M&A and financial analytics
 - [Digital Marketing, Content Creation & AI](https://www.goalfinity.co/institute/programs/digital-marketing-content-ai): SEO, social media, performance marketing, content creation and AI-powered marketing
@@ -16,7 +16,7 @@
 - OPT job support for international students: [Dallas](https://www.goalfinity.co/careers/opt-job-support-dallas), [Houston](https://www.goalfinity.co/careers/opt-job-support-houston), [New York](https://www.goalfinity.co/careers/opt-job-support-new-york), [New Jersey](https://www.goalfinity.co/careers/opt-job-support-new-jersey), [Chicago](https://www.goalfinity.co/careers/opt-job-support-chicago), [Boston](https://www.goalfinity.co/careers/opt-job-support-boston), [Bay Area](https://www.goalfinity.co/careers/opt-job-support-bay-area), [Atlanta](https://www.goalfinity.co/careers/opt-job-support-atlanta), [Seattle](https://www.goalfinity.co/careers/opt-job-support-seattle), [Los Angeles](https://www.goalfinity.co/careers/opt-job-support-los-angeles), [Phoenix](https://www.goalfinity.co/careers/opt-job-support-phoenix)
 - Courses in Ahmedabad: [Data Science](https://www.goalfinity.co/institute/data-science-course-ahmedabad), [Investment Banking](https://www.goalfinity.co/institute/investment-banking-course-ahmedabad), [Digital Marketing](https://www.goalfinity.co/institute/digital-marketing-course-ahmedabad)
 - Courses for Gandhinagar students: [Data Science](https://www.goalfinity.co/institute/data-science-course-gandhinagar), [Investment Banking](https://www.goalfinity.co/institute/investment-banking-course-gandhinagar), [Digital Marketing](https://www.goalfinity.co/institute/digital-marketing-course-gandhinagar)
-- Courses for Vadodara students (online or Ahmedabad classroom): [Data Science](https://www.goalfinity.co/institute/data-science-course-vadodara), [Investment Banking](https://www.goalfinity.co/institute/investment-banking-course-vadodara), [Digital Marketing](https://www.goalfinity.co/institute/digital-marketing-course-vadodara)
+- Courses for Vadodara students (online or classroom): [Data Science](https://www.goalfinity.co/institute/data-science-course-vadodara), [Investment Banking](https://www.goalfinity.co/institute/investment-banking-course-vadodara), [Digital Marketing](https://www.goalfinity.co/institute/digital-marketing-course-vadodara)
 
 ## Contact
 - Email: Info@goalfinity.co

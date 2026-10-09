@@ -11,7 +11,7 @@ import { INSTITUTE_PARTS, PROGRAMS, JOURNEY, INSTITUTE_FAQ } from "../data/conte
 import { Seo, faqJsonLd } from "../components/site/Seo";
 
 const MODES = [
-  { icon: School, t: "Classroom · Ahmedabad", d: "Classroom coaching and lab infrastructure at Parishram Elegant, Science City Road, near Sola Overbridge.", img: "/media/lab.jpg" },
+  { icon: School, t: "Classroom", d: "Classroom coaching with lab infrastructure and mentor-led, hands-on sessions.", img: "/media/lab.jpg" },
   { icon: Globe2, t: "Online · Worldwide", d: "The same programs and mentors, live online — open to international students in the USA and beyond.", img: "/media/online.jpg" },
 ];
 
@@ -60,7 +60,7 @@ export default function Institute() {
   return (
     <main data-testid="institute-page">
       <Seo path="/institute" image="/og/og-institute.jpg" imageAlt="Goalfinity Institute of Professional Studies, Ahmedabad" title="Career Courses in Ahmedabad & Online | Goalfinity Institute" description="Goalfinity Institute in Ahmedabad: 6-month programs in AI & Data Science, Investment Banking and Digital Marketing, in classroom or online, with placement assistance." jsonLd={faqJsonLd(INSTITUTE_FAQ)} />
-      <PageHero tid="institute-hero" tone="green" accent="#1E9A4A" eyebrow="Goalfinity Institute of Professional Studies · Ahmedabad & Online" lines={["Skill up.", "Stand out.", <span key="s" className="text-[#1E9A4A]">Succeed.</span>]} lead="One vision. Many paths. Endless impact. Industry programs in IT, business, banking and professional education — with classroom coaching in Ahmedabad, an online mode for international students and dedicated placement assistance." image="/media/lecture.jpg" imageAlt="Students in a lecture hall">
+      <PageHero tid="institute-hero" tone="green" accent="#1E9A4A" eyebrow="Goalfinity Institute of Professional Studies · Classroom & Online" lines={["Skill up.", "Stand out.", <span key="s" className="text-[#1E9A4A]">Succeed.</span>]} lead="One vision. Many paths. Endless impact. Industry programs in IT, business, banking and professional education — with classroom coaching, an online mode for international students and dedicated placement assistance." image="/media/lecture.jpg" imageAlt="Students in a lecture hall">
         <BookSessionButton vertical="institute" tid="institute-book-session-btn" />
         <button onClick={() => scrollToId("enquire")} data-testid="institute-hero-enquire-btn" className="group inline-flex items-center gap-2 rounded-full border border-[#CFE9D8] bg-white px-7 py-4 text-[15px] font-semibold text-[#0F1F5C] transition-[border-color] duration-300 hover:border-[#1E9A4A]">Enquire for fees <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" /></button>
       </PageHero>
@@ -99,7 +99,7 @@ export default function Institute() {
           ))}
         </Accordion>
       </section>
-      <PlacementStories tid="institute-stories-section" types={["institute", "online"]} title={<>Learners in Ahmedabad and online, <span className="text-[#1E9A4A]">now career-ready.</span></>} lead="Classroom and online students who completed a Goalfinity Institute program and moved into the roles they trained for." />
+      <PlacementStories tid="institute-stories-section" types={["institute", "online"]} title={<>Learners in classroom and online, <span className="text-[#1E9A4A]">now career-ready.</span></>} lead="Classroom and online students who completed a Goalfinity Institute program and moved into the roles they trained for." />
       <EnquirySection defaultVertical="institute" title="Ready to build your career with Goalfinity?" />
     </main>
   );

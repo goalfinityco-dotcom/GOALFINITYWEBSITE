@@ -60,7 +60,7 @@ export const BookSessionButton = ({ vertical, tid, className = "" }) => {
       <DialogContent data-lenis-prevent data-testid="book-session-dialog" className="max-h-[90vh] overflow-y-auto rounded-[28px] sm:max-w-xl">
         <DialogHeader>
           <DialogTitle className="font-display text-2xl font-semibold tracking-tight">{vertical === "careers" ? "Book a career session" : "Book a counselling session"}</DialogTitle>
-          <DialogDescription>{vertical === "careers" ? "Free 1:1 consultation with a Goalfinity Careers advisor about your US job search." : "Meet a Goalfinity Institute Student Counselor in Ahmedabad or online."}</DialogDescription>
+          <DialogDescription>{vertical === "careers" ? "Free 1:1 consultation with a Goalfinity Careers advisor about your US job search." : "Meet a Goalfinity Institute Student Counselor, in classroom or online."}</DialogDescription>
         </DialogHeader>
         {done ? (
           <div data-testid="session-success" className="flex flex-col items-start gap-3 py-6">

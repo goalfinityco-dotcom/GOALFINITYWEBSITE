@@ -109,7 +109,7 @@ async def send_email(*, to: str, subject: str, html: str, retries: int = 3) -> s
         raise RuntimeError(code)
 
 
-VERTICAL_LABEL = {"careers": "Goalfinity Careers (USA)", "institute": "Goalfinity Institute (Ahmedabad / Online)", "unsure": "Not sure yet"}
+VERTICAL_LABEL = {"careers": "Goalfinity Careers (USA)", "institute": "Goalfinity Institute (Classroom / Online)", "unsure": "Not sure yet"}
 
 
 def enquiry_email(e: dict) -> tuple[str, str]:

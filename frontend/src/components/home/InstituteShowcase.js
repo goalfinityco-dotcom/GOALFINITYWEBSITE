@@ -36,11 +36,11 @@ export const InstituteShowcase = () => (
     <div className="mx-auto max-w-[1360px] px-5 sm:px-8">
       <div className="grid gap-12 lg:grid-cols-12">
         <Reveal className="lg:col-span-7">
-          <Eyebrow tone="green">Goalfinity Institute of Professional Studies · Ahmedabad</Eyebrow>
+          <Eyebrow tone="green">Goalfinity Institute of Professional Studies · Classroom & Online</Eyebrow>
           <h2 className="font-display mt-5 text-5xl font-bold leading-[0.98] tracking-[-0.03em] text-[#0F1F5C] sm:text-7xl">Skill up.<br />Stand out.<br /><span className="text-[#1E9A4A]">Succeed.</span></h2>
-          <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-[#3B4A66]">Everything you need to learn, get hired and grow — in one program. Classroom coaching and lab infrastructure in Ahmedabad, with an online mode for students anywhere in the world.</p>
+          <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-[#3B4A66]">Everything you need to learn, get hired and grow — in one program. Classroom coaching and lab infrastructure, with an online mode for students anywhere in the world.</p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-[#0F1F5C]"><School className="h-4 w-4 text-[#1E9A4A]" /> Classroom · Science City Road</span>
+            <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-[#0F1F5C]"><School className="h-4 w-4 text-[#1E9A4A]" /> Classroom</span>
             <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-[#0F1F5C]"><Globe2 className="h-4 w-4 text-[#1E9A4A]" /> Online · Worldwide</span>
           </div>
         </Reveal>

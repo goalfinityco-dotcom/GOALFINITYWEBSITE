@@ -35,7 +35,7 @@ export default function InstituteCourseCity() {
       <section className="mx-auto grid max-w-[1360px] gap-5 px-5 py-20 sm:px-8 md:grid-cols-2 md:py-28">
         <Reveal>
           <div data-testid="course-city-location" className="h-full rounded-[28px] bg-[#0F1F5C] p-7 text-white sm:p-9">
-            <p className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-[#7FD9A0]"><MapPin className="h-4 w-4" />Classroom in Ahmedabad</p>
+            <p className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-[#7FD9A0]"><MapPin className="h-4 w-4" />Classroom or online</p>
             <p className="font-display mt-5 text-2xl font-semibold leading-snug tracking-tight">{CONTACT.india.lines.join(" ")}</p>
             <p className="mt-4 text-[15px] text-white/80">{l.access}</p>
             <a href={`tel:${CONTACT.india.tel}`} className="mt-6 inline-block font-semibold text-[#7FD9A0]">{CONTACT.india.phone}</a>

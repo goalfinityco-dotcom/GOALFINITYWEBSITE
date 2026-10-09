@@ -10,7 +10,7 @@ export const EnquirySection = ({ defaultVertical = "careers", defaultInterest = 
       <Reveal className="lg:col-span-5">
         <Eyebrow tone="amber">Enquire for fees</Eyebrow>
         <h2 className="font-display mt-5 text-4xl font-semibold leading-[1.02] tracking-tight sm:text-5xl">{title}</h2>
-        <p className="mt-5 max-w-md text-[17px] leading-relaxed text-[#3B4A66]">Tell us where you are and what you want next. A Goalfinity advisor (USA) or Student Counselor (Ahmedabad) will reply with a plan and the fee structure that fits you.</p>
+        <p className="mt-5 max-w-md text-[17px] leading-relaxed text-[#3B4A66]">Tell us where you are and what you want next. A Goalfinity advisor or Student Counselor will reply with a plan and the fee structure that fits you.</p>
         <div className="mt-8 space-y-3 text-[15px]">
           <p><span className="font-semibold">USA</span> · <a className="link-underline" href={`tel:${CONTACT.usa.tel}`}>{CONTACT.usa.phone}</a></p>
           <p><span className="font-semibold">India</span> · <a className="link-underline" href={`tel:${CONTACT.india.tel}`}>{CONTACT.india.phone}</a></p>
