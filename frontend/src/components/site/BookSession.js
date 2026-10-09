@@ -20,7 +20,7 @@ const SessionForm = ({ vertical, onDone }) => {
     e.preventDefault();
     setState({ loading: true, error: "" });
     try {
-      await http.post("/enquiries", { ...f, kind: "session", vertical, location: c.location, interest: f.interest || null, message: f.message || null });
+      await http.post("/enquiries", { ...f, kind: "session", vertical, location: c.location, interest: f.interest || null, message: f.message || null, source_page: window.location.pathname });
       onDone();
     } catch (err) {
       setState({ loading: false, error: formatApiError(err.response?.data?.detail) || err.message });

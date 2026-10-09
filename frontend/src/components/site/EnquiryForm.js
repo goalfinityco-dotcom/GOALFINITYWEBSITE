@@ -32,7 +32,7 @@ export const EnquiryForm = ({ defaultVertical = "careers", defaultInterest = "" 
     e.preventDefault();
     setState({ loading: true, error: "", done: false });
     try {
-      await http.post("/enquiries", { ...form, interest: form.interest || null, message: form.message || null });
+      await http.post("/enquiries", { ...form, interest: form.interest || null, message: form.message || null, source_page: window.location.pathname });
       setState({ loading: false, error: "", done: true });
     } catch (err) {
       setState({ loading: false, error: formatApiError(err.response?.data?.detail) || err.message, done: false });

@@ -112,7 +112,8 @@ def enquiry_email(e: dict) -> tuple[str, str]:
     subject = f"{'Session booking request' if is_session else 'New website enquiry'} - {vertical}"
     rows = [("Name", e["name"]), ("Email", e["email"]), ("Phone / WhatsApp", e["phone"]),
             ("Interested in", vertical), ("Programme / service", e.get("interest") or "-"),
-            ("Based in", e.get("location") or "-"), ("Message", e.get("message") or "-")]
+            ("Based in", e.get("location") or "-"), ("Message", e.get("message") or "-"),
+            ("Sent from page", e.get("source_page") or "-")]
     if is_session:
         rows = [("Request type", "Book a session"), ("Preferred date", e.get("preferred_date") or "-"),
                 ("Preferred time", e.get("preferred_time") or "-"), ("Session mode", e.get("session_mode") or "-")] + rows
