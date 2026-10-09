@@ -7,6 +7,7 @@ import { FounderDesk } from "../components/group/FounderDesk";
 import { ChooseJourney } from "../components/group/ChooseJourney";
 import { scrollToId } from "../components/site/SmoothScroll";
 import { GROUP } from "../data/group";
+import { Seo } from "../components/site/Seo";
 
 export default function About() {
   const { hash } = useLocation();
@@ -18,6 +19,7 @@ export default function About() {
 
   return (
     <main data-testid="about-page" className="pt-32 sm:pt-40">
+      <Seo path="/about" title="About Goalfinity Group | Vision, Mission & Founder Mithil Shah" description="Goalfinity Group brings education and career development together. Read our vision, mission and a message from founder Mithil Shah, with 17+ years in EdTech." />
       <div className="mx-auto grid max-w-[1360px] items-center gap-10 px-5 sm:px-8 lg:grid-cols-12">
         <div className="lg:col-span-8">
           <Eyebrow>Goalfinity Group · {GROUP.pillars}</Eyebrow>

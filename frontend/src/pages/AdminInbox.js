@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { LogOut, Mail, Phone, RefreshCw, Trash2 } from "lucide-react";
 import { http } from "../lib/api";
 import { useAuth } from "../context/AuthContext";
+import { Seo } from "../components/site/Seo";
 
 const STATUSES = ["new", "contacted", "enrolled", "archived"];
 const VFILTERS = [{ id: "", l: "All" }, { id: "careers", l: "Careers" }, { id: "institute", l: "Institute" }, { id: "unsure", l: "Not sure" }];
@@ -62,6 +63,7 @@ export default function AdminInbox() {
 
   return (
     <main data-testid="admin-inbox-page" className="mx-auto max-w-[1360px] px-5 pb-20 pt-28 sm:px-8">
+      <Seo path="/admin" title="Enquiries inbox | Goalfinity" description="Goalfinity admin." noindex />
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div><p className="font-mono text-xs uppercase tracking-[0.2em] text-[#2480F1]">Admin</p><h1 className="font-display mt-2 text-4xl font-semibold tracking-tight">Enquiries inbox</h1><p className="mt-1 text-sm text-[#3B4A66]">{items.length} enquiries · signed in as {user.email}</p></div>
         <div className="flex gap-2">

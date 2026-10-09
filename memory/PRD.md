@@ -23,6 +23,7 @@ User choices: enquiry form saved to admin inbox + emailed to Info@goalfinity.co,
 - Admin login + inbox (filter by vertical, status update, delete, email status)
 - Placement stories wall (SAMPLE data, data/stories.js): home = all, Careers page = careers only, Institute page = institute + online
 - Program detail pages /institute/programs/:slug (syllabus 5 phases, tools, batch schedule, outcomes, enquiry pre-filled with program) — SAMPLE syllabus/schedule in data/programDetails.js
+- 2026-10-09: SEO — static head (title, description, canonical https://www.goalfinity.co, OG/Twitter, Organization JSON-LD with Careers + Institute sub-orgs, noscript), per-route meta via components/site/Seo.js (FAQPage on Careers/Institute, Course on programs, noindex on admin), share images public/og/*.jpg, robots.txt, sitemap.xml, llms.txt
 - 2026-10-09: Goalfinity Group parent brand — group logo in home hero/header/footer/favicon; header logo switches per page (Careers / Institute); About, Vision, Mission, Why Goalfinity, Founder's Desk (Mithil Shah, photo), Choose Your Journey logo cards (content from client PDFs, data/group.js); /about page with full founder message; "Book a session" dialog on Careers & Institute pages (saved as enquiry kind=session with preferred date/time/mode, emailed, shown in admin)
 
 ## Backlog

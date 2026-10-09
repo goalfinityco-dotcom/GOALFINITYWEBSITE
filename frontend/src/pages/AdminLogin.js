@@ -4,6 +4,7 @@ import { Loader2, Lock } from "lucide-react";
 import { http, formatApiError } from "../lib/api";
 import { useAuth } from "../context/AuthContext";
 import { CareersLogo } from "../components/site/Brand";
+import { Seo } from "../components/site/Seo";
 
 const field = "w-full rounded-2xl border border-[#D9E1EE] bg-white px-4 py-3.5 text-[15px] outline-none focus:border-[#2480F1]";
 
@@ -29,6 +30,7 @@ export default function AdminLogin() {
 
   return (
     <main data-testid="admin-login-page" className="grid min-h-screen place-items-center px-5 py-28">
+      <Seo path="/admin/login" title="Team login | Goalfinity" description="Goalfinity team login." noindex />
       <form onSubmit={submit} data-testid="admin-login-form" className="w-full max-w-md rounded-[32px] border border-[#E3E8F2] bg-white p-8 shadow-xl sm:p-10">
         <CareersLogo className="h-8" />
         <h1 className="font-display mt-8 flex items-center gap-2 text-3xl font-semibold tracking-tight"><Lock className="h-6 w-6 text-[#2480F1]" /> Team login</h1>

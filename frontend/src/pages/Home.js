@@ -9,10 +9,12 @@ import { ChooseJourney } from "../components/group/ChooseJourney";
 import { Marquee } from "../components/site/Marquee";
 import { Offices } from "../components/site/Offices";
 import { EnquirySection } from "../components/site/EnquirySection";
+import { Seo } from "../components/site/Seo";
 
 export default function Home() {
   return (
     <main data-testid="home-page">
+      <Seo path="/" title="Goalfinity Group | US Career Services & Ahmedabad Institute" description="Goalfinity Group: career guidance and job-search support for international students in the USA, plus career programs in Ahmedabad and online." />
       <HomeHero />
       <div className="mt-20 sm:mt-24"><Marquee /></div>
       <AboutGroup />

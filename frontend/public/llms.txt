@@ -1,0 +1,18 @@
+# Goalfinity Group
+
+> Goalfinity Group brings together education and career development through two verticals: Goalfinity Careers (career guidance, job-search support and placement services for international students in the USA) and Goalfinity Institute of Professional Studies (career-focused programs in Ahmedabad, India, and online).
+
+## Key pages
+- [Home](https://www.goalfinity.co/): Goalfinity Group overview, about, vision, mission and founder's message
+- [About](https://www.goalfinity.co/about): About Goalfinity Group, vision, mission and founder Mithil Shah
+- [Goalfinity Careers](https://www.goalfinity.co/careers): 4-stage career support for international students in the USA: profile building, job applications, technical and interview support, re-employment support; OPT / STEM OPT guidance
+- [Goalfinity Institute](https://www.goalfinity.co/institute): Classroom coaching in Ahmedabad and online programs with placement assistance
+- [AI Engineer & Data Science](https://www.goalfinity.co/institute/programs/ai-engineer-data-science): Python, data science, machine learning, generative AI and LLMs
+- [Investment Banking & Financial Analytics](https://www.goalfinity.co/institute/programs/investment-banking-financial-analytics): Financial modelling, valuation, equity research, M&A and financial analytics
+- [Digital Marketing, Content Creation & AI](https://www.goalfinity.co/institute/programs/digital-marketing-content-ai): SEO, social media, performance marketing, content creation and AI-powered marketing
+- [Contact](https://www.goalfinity.co/contact): Enquiry form and office details
+
+## Contact
+- Email: Info@goalfinity.co
+- USA office: 117 South Lexington Street, Ste 100, Harrisonville, MO 64701, USA · +1 646 212 3340
+- India office: 204-SF, Parishram Elegant, Science City Road, near Sola Overbridge, Ahmedabad, Gujarat 380060, India · +91 99098 52323

@@ -7,6 +7,7 @@ import { EnquirySection } from "../components/site/EnquirySection";
 import { scrollToId } from "../components/site/SmoothScroll";
 import { PROGRAMS } from "../data/content";
 import { PROGRAM_DETAILS, SCHEDULES } from "../data/programDetails";
+import { Seo } from "../components/site/Seo";
 
 const FeesButton = ({ tid, dark }) => (
   <button onClick={() => scrollToId("enquire")} data-testid={tid} className={`group inline-flex items-center gap-2 rounded-full px-7 py-4 text-[15px] font-semibold transition-[background-color] duration-300 ${dark ? "bg-[#1E9A4A] text-white hover:bg-[#23B157]" : "bg-[#1E9A4A] text-white hover:bg-[#0F1F5C]"}`}>
@@ -93,6 +94,7 @@ export default function ProgramDetail() {
 
   return (
     <main data-testid={`program-page-${program.key}`} key={slug}>
+      <Seo path={`/institute/programs/${slug}`} image="/og/og-institute.jpg" imageAlt={`${program.title} at Goalfinity Institute`} title={`${program.title} Course, Ahmedabad & Online | Goalfinity`} description={`${program.title}: a 6-month Goalfinity Institute program covering ${program.desc.replace(/\.$/, "")}. Classroom in Ahmedabad or online.`} jsonLd={{ "@context": "https://schema.org", "@type": "Course", name: program.title, description: program.desc, provider: { "@type": "EducationalOrganization", name: "Goalfinity Institute of Professional Studies", sameAs: "https://www.goalfinity.co/institute" } }} />
       <PageHero tid="program-hero" tone="green" accent="#1E9A4A" eyebrow={`Goalfinity Institute · ${program.tag} · 6 months / 24 weeks`} lines={d.lines} lead={d.lead} image={d.image} imageAlt={program.title}>
         <FeesButton tid="program-hero-fees-btn" />
       </PageHero>
