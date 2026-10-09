@@ -27,18 +27,42 @@ export const CAREER_CITIES = [
     universities: ["San Jose State University", "Santa Clara University", "University of California, Berkeley", "San Francisco State University", "Stanford University"],
     industries: ["Software & AI", "Semiconductors", "Cloud & data", "Fintech", "Product & design"],
     intro: "The Bay Area is the centre of US tech and AI hiring, and competition for every role is intense. Goalfinity Careers sharpens your GitHub, portfolio and technical interview preparation so you stand out in the stack you know best." },
+  { slug: "atlanta", city: "Atlanta", area: "Atlanta, Georgia", tz: "Eastern Time (ET)", image: "/media/corporate.jpg",
+    universities: ["Georgia Institute of Technology", "Georgia State University", "Emory University", "Kennesaw State University", "Clark Atlanta University"],
+    industries: ["Fintech & payments", "Logistics", "Media", "Healthcare", "IT services"],
+    intro: "Atlanta's growing fintech, logistics and IT employers hire many analytics and engineering graduates. Goalfinity Careers helps international students on OPT and STEM OPT target the right roles and prepare for every interview." },
+  { slug: "seattle", city: "Seattle", area: "Seattle, Washington", tz: "Pacific Time (PT)", image: "/media/professional.jpg",
+    universities: ["University of Washington", "Seattle University", "Seattle Pacific University", "Northeastern University (Seattle)", "City University of Seattle"],
+    industries: ["Cloud computing", "E-commerce", "Software & AI", "Aerospace", "Gaming"],
+    intro: "Seattle's cloud, e-commerce and software teams set a high bar for technical interviews. We help F-1 graduates build a strong GitHub and portfolio, then prepare for coding and system-design rounds with mentors." },
+  { slug: "los-angeles", city: "Los Angeles", area: "Los Angeles, California", tz: "Pacific Time (PT)", image: "/media/corporate.jpg",
+    universities: ["University of Southern California", "University of California, Los Angeles", "California State University, Los Angeles", "California State University, Long Beach", "Loyola Marymount University"],
+    industries: ["Entertainment & media", "Aerospace", "Healthcare", "Technology", "Logistics & ports"],
+    intro: "Los Angeles offers roles across media, aerospace, healthcare and tech. Goalfinity Careers helps international graduates position their skills for the right industry and keep 80–100 quality applications moving." },
+  { slug: "phoenix", city: "Phoenix", area: "Phoenix, Arizona", tz: "Arizona Time (MST)", image: "/media/professional.jpg",
+    universities: ["Arizona State University", "Grand Canyon University", "Thunderbird School of Global Management", "Northern Arizona University (Phoenix sites)", "University of Arizona (Phoenix campus)"],
+    industries: ["Semiconductors", "Financial services", "Healthcare", "Technology", "Manufacturing"],
+    intro: "Phoenix is home to one of the largest universities in the US and a growing semiconductor and financial services sector. We help OPT and STEM OPT graduates in the area turn their degree into interviews." },
 ];
 
-export const INSTITUTE_COURSES_LOCAL = [
-  { slug: "data-science-course-ahmedabad", program: "ai-engineer-data-science", h1: ["Data Science & AI", "course in Ahmedabad."],
-    keyword: "Data Science course in Ahmedabad",
-    intro: "Learn Python, data science, machine learning, generative AI and LLMs in a classroom on Science City Road, Ahmedabad, or join the same program online. Build real projects and a capstone you can show recruiters." },
-  { slug: "investment-banking-course-ahmedabad", program: "investment-banking-financial-analytics", h1: ["Investment Banking", "course in Ahmedabad."],
-    keyword: "Investment Banking course in Ahmedabad",
-    intro: "Master financial modelling, valuation, equity research, M&A and financial analytics with practical, mentor-reviewed work, in classroom in Ahmedabad or online." },
-  { slug: "digital-marketing-course-ahmedabad", program: "digital-marketing-content-ai", h1: ["Digital Marketing", "course in Ahmedabad."],
-    keyword: "Digital Marketing course in Ahmedabad",
-    intro: "Learn SEO, social media, performance marketing, content creation, analytics and AI-powered marketing by running real campaigns, in classroom in Ahmedabad or online." },
+const COURSE_BASE = [
+  { key: "data-science", program: "ai-engineer-data-science", name: "Data Science", h1: "Data Science & AI", what: "Learn Python, data science, machine learning, generative AI and LLMs, and build real projects and a capstone you can show recruiters." },
+  { key: "investment-banking", program: "investment-banking-financial-analytics", name: "Investment Banking", h1: "Investment Banking", what: "Master financial modelling, valuation, equity research, M&A and financial analytics with practical, mentor-reviewed work." },
+  { key: "digital-marketing", program: "digital-marketing-content-ai", name: "Digital Marketing", h1: "Digital Marketing", what: "Learn SEO, social media, performance marketing, content creation, analytics and AI-powered marketing by running real campaigns." },
 ];
 
-export const NEARBY_AREAS = ["Sola", "Science City", "Thaltej", "Gota", "Bodakdev", "SG Highway", "Vastrapur", "Chandlodia"];
+export const COURSE_CITIES = [
+  { slug: "ahmedabad", city: "Ahmedabad", mode: "Attend in classroom on Science City Road, Ahmedabad, or join the same program online.", access: "Easy to reach from Sola, Science City, Thaltej, Gota, Bodakdev, SG Highway, Vastrapur and Chandlodia." },
+  { slug: "gandhinagar", city: "Gandhinagar", mode: "Students from Gandhinagar can attend classroom sessions at our Ahmedabad centre, a short drive along SG Highway, or learn live online.", access: "From Gandhinagar, head towards Ahmedabad on SG Highway; the centre is on Science City Road near Sola Overbridge." },
+  { slug: "vadodara", city: "Vadodara", mode: "Students in Vadodara can learn live online with the same mentors and projects, or attend classroom sessions at our Ahmedabad centre.", access: "Vadodara students can join the live online batch, or attend classroom sessions at our Ahmedabad centre on Science City Road." },
+];
+
+export const INSTITUTE_COURSES_LOCAL = COURSE_CITIES.flatMap((c) => COURSE_BASE.map((b) => ({
+  slug: `${b.key}-course-${c.slug}`,
+  program: b.program,
+  city: c.city,
+  access: c.access,
+  h1: [b.h1, c.slug === "ahmedabad" ? "course in Ahmedabad." : `course for ${c.city} students.`],
+  keyword: `${b.name} course in ${c.city}`,
+  intro: `${b.what} ${c.mode}`,
+})));

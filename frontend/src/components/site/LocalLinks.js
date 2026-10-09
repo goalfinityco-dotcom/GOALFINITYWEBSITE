@@ -10,7 +10,7 @@ export const LocalLinks = () => (
       </ul>
     </div>
     <div>
-      <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#7FD9A0]">Courses in Ahmedabad</p>
+      <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#7FD9A0]">Courses in Gujarat & online</p>
       <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-white/80">
         {INSTITUTE_COURSES_LOCAL.map((l) => <li key={l.slug}><Link to={`/institute/${l.slug}`} data-testid={`footer-course-${l.slug}`} className="link-underline">{l.keyword}</Link></li>)}
       </ul>
