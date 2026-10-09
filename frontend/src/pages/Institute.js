@@ -45,8 +45,8 @@ const Features = () => (
           <div className="lg:col-span-4"><span className="font-mono text-xs uppercase tracking-[0.2em] text-[#1E9A4A]">{part.no}</span><h3 className="font-display mt-2 text-3xl font-semibold tracking-tight text-[#0F1F5C]">{part.title}</h3></div>
           <ul className="grid gap-3 sm:grid-cols-2 lg:col-span-8">
             {part.items.map((it) => (
-              <li key={it.n} className={`flex items-center gap-3 rounded-2xl border p-4 text-[15px] font-medium ${it.t.includes("100%") ? "border-[#1E9A4A] bg-[#0F1F5C] text-white" : "border-[#E3E8F2] bg-white text-[#0F1F5C]"}`}>
-                <span className={`grid h-7 w-7 shrink-0 place-items-center rounded-lg text-xs font-bold ${it.t.includes("100%") ? "bg-[#1E9A4A] text-white" : "bg-[#EAF7EF] text-[#146B34]"}`}>{it.n}</span>{it.t}
+              <li key={it.n} className={`flex items-center gap-3 rounded-2xl border p-4 text-[15px] font-medium ${it.t.includes("Flagship") ? "border-[#1E9A4A] bg-[#0F1F5C] text-white" : "border-[#E3E8F2] bg-white text-[#0F1F5C]"}`}>
+                <span className={`grid h-7 w-7 shrink-0 place-items-center rounded-lg text-xs font-bold ${it.t.includes("Flagship") ? "bg-[#1E9A4A] text-white" : "bg-[#EAF7EF] text-[#146B34]"}`}>{it.n}</span>{it.t}
               </li>
             ))}
           </ul>
@@ -59,7 +59,7 @@ const Features = () => (
 export default function Institute() {
   return (
     <main data-testid="institute-page">
-      <PageHero tid="institute-hero" logo={<InstituteLogo className="h-28 sm:h-32" />} tone="green" accent="#1E9A4A" eyebrow="Goalfinity Institute of Professional Studies · Ahmedabad & Online" lines={["Skill up.", "Stand out.", <span key="s" className="text-[#1E9A4A]">Succeed.</span>]} lead="One vision. Many paths. Endless impact. Industry programs in IT, business, banking and professional education — with classroom coaching in Ahmedabad, an online mode for international students and a 100% Job Placement / Career Guarantee Program." image="/media/lecture.jpg" imageAlt="Students in a lecture hall">
+      <PageHero tid="institute-hero" logo={<InstituteLogo className="h-28 sm:h-32" />} tone="green" accent="#1E9A4A" eyebrow="Goalfinity Institute of Professional Studies · Ahmedabad & Online" lines={["Skill up.", "Stand out.", <span key="s" className="text-[#1E9A4A]">Succeed.</span>]} lead="One vision. Many paths. Endless impact. Industry programs in IT, business, banking and professional education — with classroom coaching in Ahmedabad, an online mode for international students and dedicated placement assistance." image="/media/lecture.jpg" imageAlt="Students in a lecture hall">
         <BookSessionButton vertical="institute" tid="institute-book-session-btn" />
         <button onClick={() => scrollToId("enquire")} data-testid="institute-hero-enquire-btn" className="group inline-flex items-center gap-2 rounded-full border border-[#CFE9D8] bg-white px-7 py-4 text-[15px] font-semibold text-[#0F1F5C] transition-[border-color] duration-300 hover:border-[#1E9A4A]">Enquire for fees <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" /></button>
       </PageHero>

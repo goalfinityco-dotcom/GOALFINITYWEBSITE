@@ -71,7 +71,7 @@ const Outcomes = ({ d, slug }) => (
       <div className="mt-8 flex flex-wrap gap-3">{d.roles.map((r) => <span key={r} className="rounded-full bg-white/10 px-4 py-2 text-[15px]">{r}</span>)}</div>
       <div className="mt-10 flex flex-wrap items-center gap-4 border-t border-white/15 pt-8">
         <FeesButton tid="program-outcomes-fees-btn" dark />
-        <p className="text-sm text-white/80">Includes the 100% Job Placement / Career Guarantee Program (Flagship).</p>
+        <p className="max-w-md text-sm text-white/80">Includes our Dedicated Placement Assistance Program (Flagship). Outcomes depend on individual effort, eligibility and market conditions.</p>
       </div>
     </Reveal>
     <div className="mt-14 grid gap-4 md:grid-cols-2">

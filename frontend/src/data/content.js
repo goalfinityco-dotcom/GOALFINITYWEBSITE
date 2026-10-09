@@ -148,7 +148,7 @@ export const INSTITUTE_PARTS = [
       "Job Role & Company Targeting",
       "Job Application Strategy & Support",
       "Recruiter Outreach & Networking Guidance",
-      "100% Job Placement / Career Guarantee Program (Flagship)",
+      "Dedicated Placement Assistance Program (Flagship)",
       "End-to-End Career & Placement Support",
     ],
   },

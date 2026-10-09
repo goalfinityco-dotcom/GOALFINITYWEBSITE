@@ -36,7 +36,7 @@ export const PathCards = () => (
           <div className="relative">
             <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#1E9A4A]">02 · India & Online</span>
             <h3 className="font-display mt-4 text-3xl font-semibold tracking-tight text-[#0F1F5C] sm:text-4xl">Goalfinity Institute</h3>
-            <p className="mt-3 text-[15px] leading-relaxed text-[#3B4A66]">For students in Ahmedabad — and online worldwide: 6-month career programs with a 100% Job Placement / Career Guarantee Program.</p>
+            <p className="mt-3 text-[15px] leading-relaxed text-[#3B4A66]">For students in Ahmedabad — and online worldwide: 6-month career programs with dedicated placement assistance.</p>
           </div>
           <div className="relative mt-8 flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-wrap gap-2"><Chip icon={GraduationCap}>Classroom · Ahmedabad</Chip><Chip icon={Globe2}>Online mode</Chip></div>

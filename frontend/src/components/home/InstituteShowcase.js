@@ -57,7 +57,8 @@ export const InstituteShowcase = () => (
       <Reveal className="mt-6 flex flex-col items-start justify-between gap-5 rounded-[26px] bg-[#0F1F5C] p-7 text-white sm:flex-row sm:items-center sm:p-9">
         <div>
           <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#7FD9A0]">Flagship</span>
-          <p className="font-display mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">100% Job Placement / Career Guarantee Program</p>
+          <p className="font-display mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">Dedicated Placement Assistance Program</p>
+          <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-white/80">A personal career advisor, job-role targeting, application strategy and recruiter outreach guidance, with clear expectations and a sincere effort behind every commitment.</p>
         </div>
         <Link to="/institute" data-testid="institute-flagship-link" className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#1E9A4A] px-6 py-3.5 text-sm font-semibold transition-[background-color] duration-300 hover:bg-[#23B157]">Explore the Institute <ArrowUpRight className="h-4 w-4" /></Link>
       </Reveal>

@@ -6,7 +6,7 @@ const ITEMS = [
   "Live interview mentorship",
   "Classroom coaching in Ahmedabad",
   "Online mode, anywhere in the world",
-  "100% Job Placement / Career Guarantee Program",
+  "Dedicated placement assistance",
   "IT · Business · Banking · Professional Education",
 ];
 
