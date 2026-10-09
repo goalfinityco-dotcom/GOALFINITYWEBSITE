@@ -78,6 +78,28 @@ def build_digest(items: list, start: datetime, end: datetime):
     return subject, html, {"total": len(items), "sessions": sessions, "by_vertical": dict(by_vertical), "by_page": dict(by_page)}
 
 
+def build_followup(items: list, now: datetime):
+    subject = f"Follow-up needed: {len(items)} enquir{'y has' if len(items) == 1 else 'ies have'} been waiting 2+ days"
+    rows = ""
+    for e in items:
+        waited = (now - datetime.fromisoformat(e["created_at"])).days
+        extra = f" · session {e.get('preferred_date', '')} {e.get('preferred_time', '')}" if e.get("kind") == "session" else ""
+        rows += (f'<tr><td style="padding:10px 12px;border-top:1px solid #e3e8f2;font-size:14px;color:#0f172a"><b>{escape(e.get("name", ""))}</b><br>'
+                 f'<span style="color:#475569;font-size:13px">{escape(e.get("email", ""))} · {escape(e.get("phone", ""))}</span></td>'
+                 f'<td style="padding:10px 12px;border-top:1px solid #e3e8f2;font-size:13px;color:#475569">{escape(VERTICALS.get(e.get("vertical"), str(e.get("vertical"))))}{escape(extra)}<br>{escape(page_label(e.get("source_page")))}</td>'
+                 f'<td style="padding:10px 12px;border-top:1px solid #e3e8f2;font-size:14px;color:#c2410c;font-weight:bold;text-align:right">{waited} days</td></tr>')
+    admin_url = f"{os.environ['SITE_URL'].rstrip('/')}/admin"
+    html = (
+        '<table role="presentation" width="100%" style="font-family:Arial,sans-serif;background:#f4f6fb;padding:24px"><tr><td>'
+        '<table role="presentation" width="600" style="background:#ffffff;border-radius:12px;padding:12px">'
+        '<tr><td colspan="3" style="padding:12px;font-size:20px;font-weight:bold;color:#0b3f9e">These students are still waiting for a reply</td></tr>'
+        '<tr><td colspan="3" style="padding:0 12px 12px;font-size:14px;color:#475569">The enquiries below are still marked "new" after 2 days. Reach out, then set their status to "contacted" in the admin inbox.</td></tr>'
+        f'{rows}'
+        f'<tr><td colspan="3" style="padding:20px 12px;font-size:14px"><a href="{escape(admin_url)}" style="color:#0b3f9e;font-weight:bold">Open the admin inbox</a></td></tr>'
+        '</table></td></tr></table>')
+    return subject, html
+
+
 def make_router(db):
     async def run_digest(run_id: str):
         end = datetime.now(timezone.utc)
@@ -92,9 +114,7 @@ def make_router(db):
             status = "failed"
         await db.cron_runs.update_one({"run_id": run_id}, {"$set": {"status": status, "stats": stats, "finished_at": end.isoformat()}})
 
-    @router.post("/weekly-digest")
-    async def weekly_digest(request: Request, tasks: BackgroundTasks):
-        # Cron endpoints must ack 2xx immediately; enqueue/background the actual work.
+    async def accept_run(request: Request, job: str):
         auth = request.headers.get("Authorization", "")
         if not auth.startswith("Bearer ") or not hmac.compare_digest(auth[7:], os.environ["WEBHOOK_CRON_SECRET"]):
             raise HTTPException(401, "Unauthorized")
@@ -109,9 +129,41 @@ def make_router(db):
             raise HTTPException(400, "Missing run id")
         res = await db.cron_runs.update_one(
             {"run_id": run_id},
-            {"$setOnInsert": {"run_id": run_id, "job": "weekly-digest", "status": "queued", "created_at": datetime.now(timezone.utc).isoformat()}},
+            {"$setOnInsert": {"run_id": run_id, "job": job, "status": "queued", "created_at": datetime.now(timezone.utc).isoformat()}},
             upsert=True)
-        if res.upserted_id is None:
+        return run_id if res.upserted_id is not None else None
+
+    async def run_followups(run_id: str):
+        now = datetime.now(timezone.utc)
+        cutoff = (now - timedelta(days=2)).isoformat()
+        q = {"status": "new", "created_at": {"$lte": cutoff}, "reminded_at": {"$exists": False}}
+        items = await db.enquiries.find(q).sort("created_at", 1).to_list(500)
+        status = "nothing_due"
+        if items:
+            subject, html = build_followup(items, now)
+            try:
+                await send_email(to=os.environ["ENQUIRY_NOTIFY_EMAIL"], subject=subject, html=html)
+                await db.enquiries.update_many({"_id": {"$in": [e["_id"] for e in items]}}, {"$set": {"reminded_at": now.isoformat()}})
+                status = "sent"
+            except Exception as e:
+                logger.error(f"Follow-up reminder email failed: {e}")
+                status = "failed"
+        await db.cron_runs.update_one({"run_id": run_id}, {"$set": {"status": status, "count": len(items), "finished_at": now.isoformat()}})
+
+    @router.post("/followup-reminders")
+    async def followup_reminders(request: Request, tasks: BackgroundTasks):
+        # Cron endpoints must ack 2xx immediately; enqueue/background the actual work.
+        run_id = await accept_run(request, "followup-reminders")
+        if run_id is None:
+            return {"ok": True, "duplicate": True}
+        tasks.add_task(run_followups, run_id)
+        return {"ok": True}
+
+    @router.post("/weekly-digest")
+    async def weekly_digest(request: Request, tasks: BackgroundTasks):
+        # Cron endpoints must ack 2xx immediately; enqueue/background the actual work.
+        run_id = await accept_run(request, "weekly-digest")
+        if run_id is None:
             return {"ok": True, "duplicate": True}
         tasks.add_task(run_digest, run_id)
         return {"ok": True}

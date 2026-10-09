@@ -7,3 +7,11 @@ crons:
     endpoint: "{{BASE_URL}}/api/cron/weekly-digest"
     method: POST
     enabled: true
+  - name: followup-reminders
+    description: "Emails info@goalfinity.co a list of enquiries still marked new after 2 days, daily 10am IST"
+    cron: "0 10 * * *"
+    timezone: "Asia/Kolkata"
+    # Cron endpoints must ack 2xx immediately; enqueue/background the actual work.
+    endpoint: "{{BASE_URL}}/api/cron/followup-reminders"
+    method: POST
+    enabled: true

@@ -23,6 +23,7 @@ User choices: enquiry form saved to admin inbox + emailed to Info@goalfinity.co,
 - Admin login + inbox (filter by vertical, status update, delete, email status)
 - Placement stories wall (SAMPLE data, data/stories.js): home = all, Careers page = careers only, Institute page = institute + online
 - Program detail pages /institute/programs/:slug (syllabus 5 phases, tools, batch schedule, outcomes, enquiry pre-filled with program) — SAMPLE syllabus/schedule in data/programDetails.js
+- 2026-10-09: Follow-up reminders — daily 10:00 IST cron -> POST /api/cron/followup-reminders; emails ENQUIRY_NOTIFY_EMAIL a list of enquiries still "new" after 48h (once per enquiry, marks reminded_at). User does NOT want a founder video.
 - 2026-10-09: Weekly enquiry digest — .emergent/crons.yml (Mondays 9:00 IST) -> POST /api/cron/weekly-digest (Bearer WEBHOOK_CRON_SECRET, idempotent via cron_runs.run_id, background send) emails last 7 days by vertical/page + latest 10 to ENQUIRY_NOTIFY_EMAIL (backend/digest.py)
 - 2026-10-09: Admin "Download CSV" — exports currently shown enquiries (vertical + page filters), Excel-friendly UTF-8 with BOM, formula-injection safe (lib/exportCsv.js)
 - 2026-10-09: Enquiry source tracking — source_page saved with every enquiry/session, shown per row + "Enquiries by page" summary chips (click to filter) in admin, included in notification email
