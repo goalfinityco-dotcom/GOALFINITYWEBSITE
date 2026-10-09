@@ -5,7 +5,6 @@ import { PageHero } from "../components/site/PageHero";
 import { Reveal, Eyebrow } from "../components/site/Motion";
 import { EnquirySection } from "../components/site/EnquirySection";
 import { BookSessionButton } from "../components/site/BookSession";
-import { InstituteLogo } from "../components/site/Brand";
 import { scrollToId } from "../components/site/SmoothScroll";
 import { Seo, faqJsonLd } from "../components/site/Seo";
 import { CONTACT, PROGRAMS } from "../data/content";
@@ -29,7 +28,7 @@ export default function InstituteCourseCity() {
   return (
     <main data-testid={`course-city-${p.key}`} key={slug}>
       <Seo path={`/institute/${slug}`} image="/og/og-institute.jpg" imageAlt={`${l.keyword} at Goalfinity Institute`} title={`${l.keyword} | Classroom & Online | Goalfinity`} description={`${l.keyword} by Goalfinity Institute: 6-month program with projects, mentors and placement assistance. Classroom in Ahmedabad or live online batches.`} jsonLd={faqJsonLd(faq)} />
-      <PageHero tid="course-city-hero" logo={<InstituteLogo className="h-24 sm:h-28" />} tone="green" accent="#1E9A4A" eyebrow={`Goalfinity Institute · ${p.tag} · For students in ${l.city}`} lines={[l.h1[0], <span key="b" className="text-[#1E9A4A]">{l.h1[1]}</span>]} lead={l.intro} image={d.image} imageAlt={l.keyword}>
+      <PageHero tid="course-city-hero" tone="green" accent="#1E9A4A" eyebrow={`Goalfinity Institute · ${p.tag} · For students in ${l.city}`} lines={[l.h1[0], <span key="b" className="text-[#1E9A4A]">{l.h1[1]}</span>]} lead={l.intro} image={d.image} imageAlt={l.keyword}>
         <BookSessionButton vertical="institute" tid="course-city-book-session-btn" />
         <button onClick={() => scrollToId("enquire")} data-testid="course-city-fees-btn" className="group inline-flex items-center gap-2 rounded-full border border-[#CFE9D8] bg-white px-7 py-4 text-[15px] font-semibold text-[#0F1F5C] hover:border-[#1E9A4A]">Enquire for fees <ArrowRight className="h-4 w-4" /></button>
       </PageHero>

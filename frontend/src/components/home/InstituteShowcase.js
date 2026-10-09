@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Globe2, School } from "lucide-react";
+import { ArrowUpRight, Globe2, GraduationCap, School } from "lucide-react";
 import { Reveal, Eyebrow } from "../site/Motion";
-import { InstituteLogo } from "../site/Brand";
 import { INSTITUTE_PARTS, PROGRAMS } from "../../data/content";
 
 const PartCard = ({ part, i }) => (
@@ -50,7 +49,10 @@ export const InstituteShowcase = () => (
             <img src="/media/lecture.jpg" alt="Students learning in a classroom" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-tr from-[#0F1F5C]/40 to-transparent" />
           </div>
-          <div className="absolute -bottom-6 left-6 rounded-3xl bg-white p-4 shadow-xl"><InstituteLogo className="h-20 sm:h-24" /></div>
+          <div data-testid="institute-showcase-badge" className="absolute -bottom-6 left-6 flex items-center gap-3 rounded-3xl bg-white px-5 py-4 shadow-xl">
+            <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#1E9A4A] text-white"><GraduationCap className="h-5 w-5" /></span>
+            <div><p className="font-display text-lg font-bold leading-tight text-[#0F1F5C]">6-month programs</p><p className="text-xs text-[#3B4A66]">Classroom & online · Placement assistance</p></div>
+          </div>
         </Reveal>
       </div>
       <div className="mt-20 grid gap-5 md:grid-cols-3">{INSTITUTE_PARTS.map((p, i) => <PartCard key={p.no} part={p} i={i} />)}</div>

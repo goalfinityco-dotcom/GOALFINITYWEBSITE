@@ -5,7 +5,6 @@ import { PageHero } from "../components/site/PageHero";
 import { Reveal, Eyebrow } from "../components/site/Motion";
 import { EnquirySection } from "../components/site/EnquirySection";
 import { BookSessionButton } from "../components/site/BookSession";
-import { CareersLogo } from "../components/site/Brand";
 import { scrollToId } from "../components/site/SmoothScroll";
 import { Seo, faqJsonLd } from "../components/site/Seo";
 import { PlacementStories } from "../components/home/PlacementStories";
@@ -33,7 +32,7 @@ export default function CareerCity() {
   return (
     <main data-testid={`career-city-${c.slug}`} key={slug}>
       <Seo path={`/careers/${slug}`} image="/og/og-careers.jpg" imageAlt={`OPT job support in ${c.city}`} title={`OPT Job Support in ${c.city} for International Students | Goalfinity`} description={`OPT & STEM OPT job search help for international students in ${c.area}: ATS resume, 80–100 targeted applications and interview mentorship from Goalfinity Careers.`} jsonLd={faqJsonLd(faq)} />
-      <PageHero tid="career-city-hero" logo={<CareersLogo className="h-12 sm:h-14" />} eyebrow={`Goalfinity Careers · ${c.area}`} lines={["OPT job support", <span key="c">in <span className="text-[#2480F1]">{c.city}.</span></span>]} lead={c.intro} image={c.image} imageAlt={`International graduates job hunting in ${c.city}`}>
+      <PageHero tid="career-city-hero" eyebrow={`Goalfinity Careers · ${c.area}`} lines={["OPT job support", <span key="c">in <span className="text-[#2480F1]">{c.city}.</span></span>]} lead={c.intro} image={c.image} imageAlt={`International graduates job hunting in ${c.city}`}>
         <BookSessionButton vertical="careers" tid="city-book-session-btn" />
         <button onClick={() => scrollToId("enquire")} data-testid="city-enquire-btn" className="group inline-flex items-center gap-2 rounded-full border border-[#C9D6EC] bg-white px-7 py-4 text-[15px] font-semibold text-[#0A1B3D] hover:border-[#0B3F9E]">Send an enquiry <ArrowRight className="h-4 w-4" /></button>
       </PageHero>

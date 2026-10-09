@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { MaskLines, Eyebrow } from "../components/site/Motion";
-import { GroupLogo } from "../components/site/Brand";
 import { AboutGroup, VisionMission, WhyGoalfinity } from "../components/group/AboutGroup";
 import { FounderDesk } from "../components/group/FounderDesk";
 import { ChooseJourney } from "../components/group/ChooseJourney";
@@ -27,7 +26,12 @@ export default function About() {
             <MaskLines lines={["About us,", <span key="v" className="text-[#C98A00]">vision & founder.</span>]} />
           </h1>
         </div>
-        <div className="lg:col-span-4"><GroupLogo className="mx-auto h-48 sm:h-56" /></div>
+        <div className="lg:col-span-4">
+          <div data-testid="about-hero-image" className="arch relative mx-auto aspect-[4/5] w-full max-w-[340px] overflow-hidden bg-[#DCE9FB] shadow-[0_40px_80px_-40px_rgba(11,63,158,0.5)]">
+            <img src="/media/grad-two.jpg" alt="Goalfinity students celebrating their goals" className="h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B3F9E]/40 via-transparent to-transparent" />
+          </div>
+        </div>
       </div>
       <AboutGroup />
       <VisionMission />

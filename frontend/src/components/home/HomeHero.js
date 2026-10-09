@@ -1,7 +1,8 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { MaskLines, Tilt, Eyebrow } from "../site/Motion";
-import { GroupLogo, StarMark } from "../site/Brand";
+import { StarMark } from "../site/Brand";
 import { scrollToId } from "../site/SmoothScroll";
 import { PathCards } from "./PathCards";
 import { GROUP, FOUNDER } from "../../data/group";
@@ -27,16 +28,18 @@ const Stat = ({ s, className, tid }) => (
   </div>
 );
 
-const HeroVisual = () => (
-  <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.3, ease: EASE, delay: 0.2 }} className="relative mx-auto w-full max-w-[480px]">
+const HeroVisual = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+  return (
+  <motion.div ref={ref} initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.3, ease: EASE, delay: 0.2 }} className="relative mx-auto w-full max-w-[460px]">
     <div className="spotlight absolute -inset-16 -z-10" />
     <Tilt>
       <div className="relative" style={{ transformStyle: "preserve-3d" }}>
-        <div className="relative grid aspect-square place-items-center overflow-hidden rounded-[40px] border border-white bg-gradient-to-br from-white via-[#F4F8FF] to-[#FFF6E0] p-8 shadow-[0_50px_100px_-40px_rgba(11,63,158,0.45)]">
-          <div className="grid-lines absolute inset-0 opacity-60" />
-          <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1.2, ease: EASE, delay: 0.5 }} className="relative" style={{ transform: "translateZ(40px)" }}>
-            <GroupLogo className="h-auto max-h-[340px] w-full object-contain drop-shadow-[0_20px_30px_rgba(11,63,158,0.18)]" />
-          </motion.div>
+        <div data-testid="hero-student-image" className="arch relative aspect-[4/5] overflow-hidden bg-[#DCE9FB] shadow-[0_50px_100px_-40px_rgba(11,63,158,0.55)]">
+          <motion.img style={{ y, scale: 1.15 }} src="/media/grad-hero.jpg" alt="International graduate ready for a US career" className="h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0B3F9E]/45 via-transparent to-transparent" />
         </div>
         <RotatingBadge />
         <Stat s={FOUNDER.stats[0]} tid="hero-stat-years" className="-bottom-6 left-4 sm:-left-8" />
@@ -52,7 +55,8 @@ const HeroVisual = () => (
       ))}
     </div>
   </motion.div>
-);
+  );
+};
 
 export const HomeHero = () => (
   <section data-testid="home-hero" className="relative overflow-hidden pt-28 sm:pt-32">
