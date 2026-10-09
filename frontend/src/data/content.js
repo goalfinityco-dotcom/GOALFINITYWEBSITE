@@ -187,6 +187,7 @@ export const INSTITUTE_FAQ = [
   { q: "How long are the programs?", a: "The professional programs are structured as 6-month / 24-week programs, combining structured learning, practical work, assessments, projects and career preparation." },
   { q: "Can I study online from the USA or another country?", a: "Yes. Alongside classroom coaching in Ahmedabad, programs can be taken in online mode, so international students can learn with Goalfinity Institute from wherever they are." },
   { q: "Will I build projects during the program?", a: "Yes. Each program includes major practical projects and a capstone, designed to help you apply your knowledge and build portfolio-ready work." },
+  { q: "Do you guarantee a job?", a: "No. We don't promise a job, because hiring decisions are made by employers and depend on your effort, skills, eligibility and the job market. What we do commit to is dedicated placement assistance: a personal career advisor, resume, GitHub, portfolio and LinkedIn support, mock interviews, job-role targeting, application strategy and recruiter outreach guidance. We set clear expectations from day one and work sincerely to deliver every service we promise." },
   { q: "What are the fees?", a: "Fees depend on the program and mode (classroom or online). Send an enquiry or talk to our Student Counselor and we will share the current fee structure." },
   { q: "Who can join?", a: "Students, graduates, aspiring professionals and anyone looking to build career-ready skills in IT, business, banking and professional education." },
 ];
