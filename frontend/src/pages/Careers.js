@@ -7,7 +7,8 @@ import { PlacementStories } from "../components/home/PlacementStories";
 import { scrollToId } from "../components/site/SmoothScroll";
 import { BookSessionButton } from "../components/site/BookSession";
 import { CareersLogo } from "../components/site/Brand";
-import { CAREERS_PILLARS } from "../data/content";
+import { CAREERS_PILLARS, CAREERS_FAQ } from "../data/content";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 
 const FOR_WHO = [
   { icon: GraduationCap, t: "F-1 students & recent grads", d: "Finishing a Master's or Bachelor's in the US and starting the job hunt." },
@@ -68,6 +69,17 @@ export default function Careers() {
         </Reveal>
         {CAREERS_PILLARS.map((p, i) => <Pillar key={p.no} p={p} i={i} />)}
         <p className="border-t border-[#E3E8F2] pt-6 text-sm text-[#3B4A66]">*Re-employment support applies if the job is lost within the applicable 1-year service period. Additional support is available as an add-on.</p>
+      </section>
+      <section className="mx-auto max-w-[1000px] px-5 pb-10 sm:px-8">
+        <Reveal><Eyebrow>Questions</Eyebrow><h2 className="font-display mt-5 text-3xl font-semibold tracking-tight sm:text-5xl">Honest answers, before you start.</h2></Reveal>
+        <Accordion type="single" collapsible className="mt-6" data-testid="careers-faq">
+          {CAREERS_FAQ.map((f, i) => (
+            <AccordionItem key={f.q} value={`f${i}`}>
+              <AccordionTrigger data-testid={`careers-faq-${i}`} className="font-display text-left text-lg font-semibold text-[#0A1B3D] sm:text-xl">{f.q}</AccordionTrigger>
+              <AccordionContent className="text-[15px] leading-relaxed text-[#3B4A66]">{f.a}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </section>
       <PlacementStories tid="careers-stories-section" types={["careers"]} title={<>International students, <span className="text-[#2480F1]">now hired in the US.</span></>} lead="F-1 graduates on OPT and STEM OPT who landed roles across the US with Goalfinity Careers." />
       <EnquirySection defaultVertical="careers" title="Let's start your US career journey." />

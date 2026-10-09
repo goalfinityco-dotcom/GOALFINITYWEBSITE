@@ -192,5 +192,15 @@ export const INSTITUTE_FAQ = [
   { q: "Who can join?", a: "Students, graduates, aspiring professionals and anyone looking to build career-ready skills in IT, business, banking and professional education." },
 ];
 
+export const CAREERS_FAQ = [
+  { q: "Who is Goalfinity Careers for?", a: "International students in the USA, especially F-1 students and recent graduates on OPT or STEM OPT, plus professionals in the US who are between jobs and want structured job-search support." },
+  { q: "Do you guarantee a job or a visa?", a: "No. Hiring decisions are made by employers, and visa or immigration decisions are made by the relevant US authorities, so no one can honestly guarantee either. What we commit to is the work: profile building, 80–100 quality targeted applications, technical and interview mentorship, and guidance throughout your search. We set clear expectations from the start and work sincerely to deliver every service we promise." },
+  { q: "How do you help with OPT and STEM OPT?", a: "We provide OPT clock assistance and guidance, STEM OPT clock guidance and help with additional OPT / STEM OPT requirements, so your job search stays aligned with your timeline and eligibility. We are not a law firm and do not give legal or immigration advice. For official decisions, always confirm with your school's DSO or a qualified immigration attorney." },
+  { q: "How many job applications will you submit?", a: "Our job application support includes 80–100 quality applications, matched to your skills, experience, domain and target roles, with tracking so you can see progress. Additional application support is available as an add-on." },
+  { q: "What if I lose my job after I'm placed?", a: "If the job is lost within the applicable 1-year service period, we provide re-employment support: continued job search, application support, interview preparation for your next opportunity and career guidance until the agreed service closure." },
+  { q: "What does it cost?", a: "Fees depend on the services and support level you choose. Book a session or send an enquiry, and an advisor will understand your profile and share the right plan and fee structure." },
+  { q: "Can I also learn new skills while job hunting?", a: "Yes. Goalfinity Institute programs in AI & Data Science, Investment Banking & Financial Analytics, and Digital Marketing, Content Creation & AI are available in online mode for students in the USA." },
+];
+
 export const CAREERS_INTERESTS = ["Full career support (all 4 stages)", "Resume & LinkedIn only", "Job applications", "Interview preparation", "OPT / STEM OPT guidance", "Re-employment support"];
 export const INSTITUTE_INTERESTS = ["AI Engineer & Data Science", "Investment Banking & Financial Analytics", "Digital Marketing, Content Creation & AI", "Not sure, need counselling"];
