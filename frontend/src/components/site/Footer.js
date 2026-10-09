@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Facebook, Instagram, Linkedin, Lock, Mail } from "lucide-react";
 import { CONTACT, SOCIALS } from "../../data/content";
 import { CareersLogo, InstituteLogo, GroupLogo } from "./Brand";
+import { LocalLinks } from "./LocalLinks";
 
 const Social = ({ href, label, id, children }) => (
   <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label} data-testid={`footer-social-${id}`} className="group inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white/85 transition-[background-color,color] duration-300 hover:bg-white hover:text-[#0A1B3D]">
@@ -52,6 +53,7 @@ export const Footer = () => (
         <Social href={SOCIALS.linkedinCareers} label="LinkedIn · Careers" id="linkedin-careers"><Linkedin className="h-4 w-4" /></Social>
         <Social href={SOCIALS.linkedinInstitute} label="LinkedIn · Institute" id="linkedin-institute"><Linkedin className="h-4 w-4" /></Social>
       </div>
+      <LocalLinks />
       <p aria-hidden="true" className="font-display pointer-events-none mt-14 select-none text-[19vw] font-extrabold leading-[0.8] tracking-[-0.05em] text-white/[0.06] lg:text-[16vw]">GOALFINITY</p>
       <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-sm text-white/60">
         <p>© {new Date().getFullYear()} Goalfinity Group · {CONTACT.website}</p>
