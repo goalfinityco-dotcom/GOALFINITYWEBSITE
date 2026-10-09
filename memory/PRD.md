@@ -23,6 +23,7 @@ User choices: enquiry form saved to admin inbox + emailed to Info@goalfinity.co,
 - Admin login + inbox (filter by vertical, status update, delete, email status)
 - Placement stories wall (SAMPLE data, data/stories.js): home = all, Careers page = careers only, Institute page = institute + online
 - Program detail pages /institute/programs/:slug (syllabus 5 phases, tools, batch schedule, outcomes, enquiry pre-filled with program) — SAMPLE syllabus/schedule in data/programDetails.js
+- 2026-10-09: Admin "Download CSV" — exports currently shown enquiries (vertical + page filters), Excel-friendly UTF-8 with BOM, formula-injection safe (lib/exportCsv.js)
 - 2026-10-09: Enquiry source tracking — source_page saved with every enquiry/session, shown per row + "Enquiries by page" summary chips (click to filter) in admin, included in notification email
 - 2026-10-09: More cities — Atlanta, Seattle, Los Angeles, Phoenix (careers) and Gandhinagar, Vadodara course pages (online or Ahmedabad classroom; 9 course pages generated from COURSE_BASE x COURSE_CITIES)
 - 2026-10-09: City landing pages — /careers/opt-job-support-{dallas,houston,new-york,new-jersey,chicago,boston,bay-area} and /institute/{data-science,investment-banking,digital-marketing}-course-ahmedabad (data/locations.js), each with own title/canonical/FAQPage, footer link hub, sitemap + llms.txt updated

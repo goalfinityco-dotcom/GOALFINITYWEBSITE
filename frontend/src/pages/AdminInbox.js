@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { toast } from "sonner";
-import { LogOut, Mail, MapPinned, Phone, RefreshCw, Trash2 } from "lucide-react";
+import { LogOut, Mail, MapPinned, Phone, RefreshCw, Trash2, Download } from "lucide-react";
 import { http } from "../lib/api";
 import { useAuth } from "../context/AuthContext";
 import { Seo } from "../components/site/Seo";
 import { pageLabel } from "../lib/pageLabel";
+import { downloadEnquiriesCsv } from "../lib/exportCsv";
 
 const SourceSummary = ({ items, active, onPick }) => {
   const rows = useMemo(() => {
@@ -90,7 +91,8 @@ export default function AdminInbox() {
       <Seo path="/admin" title="Enquiries inbox | Goalfinity" description="Goalfinity admin." noindex />
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div><p className="font-mono text-xs uppercase tracking-[0.2em] text-[#2480F1]">Admin</p><h1 className="font-display mt-2 text-4xl font-semibold tracking-tight">Enquiries inbox</h1><p className="mt-1 text-sm text-[#3B4A66]">{items.length} enquiries · signed in as {user.email}</p></div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
+          <button data-testid="admin-export-csv-btn" disabled={!shown.length} onClick={() => { downloadEnquiriesCsv(shown, [vertical || "all", source === null ? "" : pageLabel(source)]); toast.success(`Downloaded ${shown.length} enquiries`); }} className="inline-flex items-center gap-2 rounded-full bg-[#1E9A4A] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#178A3F] disabled:opacity-50"><Download className="h-4 w-4" /> Download CSV ({shown.length})</button>
           <button data-testid="admin-refresh-btn" onClick={load} className="inline-flex items-center gap-2 rounded-full border border-[#D9E1EE] bg-white px-4 py-2.5 text-sm font-semibold"><RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} /> Refresh</button>
           <button data-testid="admin-logout-btn" onClick={logout} className="inline-flex items-center gap-2 rounded-full bg-[#0A1B3D] px-4 py-2.5 text-sm font-semibold text-white"><LogOut className="h-4 w-4" /> Log out</button>
         </div>
