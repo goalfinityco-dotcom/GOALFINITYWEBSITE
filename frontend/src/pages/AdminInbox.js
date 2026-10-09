@@ -17,7 +17,7 @@ const Row = ({ e, onStatus, onDelete }) => (
       <a href={`mailto:${e.email}`} className="flex items-center gap-1.5 hover:underline"><Mail className="h-3.5 w-3.5" />{e.email}</a>
       <a href={`tel:${e.phone}`} className="mt-1 flex items-center gap-1.5 hover:underline"><Phone className="h-3.5 w-3.5" />{e.phone}</a>
     </td>
-    <td className="p-4 text-sm"><span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${VBADGE[e.vertical] || ""}`}>{e.vertical}</span><p className="mt-2">{e.interest || "—"}</p><p className="text-xs text-[#3B4A66]">{e.location}</p></td>
+    <td className="p-4 text-sm"><span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${VBADGE[e.vertical] || ""}`}>{e.vertical}</span>{e.kind === "session" && <span data-testid={`enquiry-session-badge-${e.id}`} className="ml-1.5 rounded-full bg-[#0A1B3D] px-2.5 py-1 text-xs font-semibold text-white">session</span>}{e.kind === "session" && <p className="mt-2 text-xs font-semibold text-[#0A1B3D]">{e.preferred_date} · {e.preferred_time} · {e.session_mode}</p>}<p className="mt-2">{e.interest || "—"}</p><p className="text-xs text-[#3B4A66]">{e.location}</p></td>
     <td className="max-w-xs p-4 text-sm text-[#3B4A66]">{e.message || "—"}</td>
     <td className="p-4 text-sm">
       <select data-testid={`enquiry-status-${e.id}`} value={e.status} onChange={(ev) => onStatus(e.id, ev.target.value)} className="rounded-xl border border-[#D9E1EE] bg-white px-3 py-2">

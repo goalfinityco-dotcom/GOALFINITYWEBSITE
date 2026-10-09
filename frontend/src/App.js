@@ -11,6 +11,7 @@ import Careers from "./pages/Careers";
 import Institute from "./pages/Institute";
 import Contact from "./pages/Contact";
 import ProgramDetail from "./pages/ProgramDetail";
+import About from "./pages/About";
 import AdminLogin from "./pages/AdminLogin";
 import AdminInbox from "./pages/AdminInbox";
 
@@ -23,6 +24,7 @@ const Shell = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/institute" element={<Institute />} />
         <Route path="/institute/programs/:slug" element={<ProgramDetail />} />

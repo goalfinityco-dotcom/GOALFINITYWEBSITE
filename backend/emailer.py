@@ -108,16 +108,20 @@ VERTICAL_LABEL = {"careers": "Goalfinity Careers (USA)", "institute": "Goalfinit
 
 def enquiry_email(e: dict) -> tuple[str, str]:
     vertical = VERTICAL_LABEL.get(e["vertical"], e["vertical"])
-    subject = f"New website enquiry - {vertical}"
+    is_session = e.get("kind") == "session"
+    subject = f"{'Session booking request' if is_session else 'New website enquiry'} - {vertical}"
     rows = [("Name", e["name"]), ("Email", e["email"]), ("Phone / WhatsApp", e["phone"]),
             ("Interested in", vertical), ("Programme / service", e.get("interest") or "-"),
             ("Based in", e.get("location") or "-"), ("Message", e.get("message") or "-")]
+    if is_session:
+        rows = [("Request type", "Book a session"), ("Preferred date", e.get("preferred_date") or "-"),
+                ("Preferred time", e.get("preferred_time") or "-"), ("Session mode", e.get("session_mode") or "-")] + rows
     cells = "".join(
         f'<tr><td style="padding:8px 12px;color:#475569;font-size:13px;width:160px;vertical-align:top">{escape(k)}</td>'
         f'<td style="padding:8px 12px;color:#0f172a;font-size:14px">{escape(str(v))}</td></tr>' for k, v in rows)
     html = (f'<table role="presentation" width="100%" style="font-family:Arial,sans-serif;background:#f4f6fb;padding:24px">'
             f'<tr><td><table role="presentation" width="600" style="background:#ffffff;border-radius:12px;padding:8px">'
-            f'<tr><td colspan="2" style="padding:16px 12px;font-size:18px;font-weight:bold;color:#0b3f9e">New enquiry from the Goalfinity website</td></tr>'
+            f'<tr><td colspan="2" style="padding:16px 12px;font-size:18px;font-weight:bold;color:#0b3f9e">{"New session booking request" if is_session else "New enquiry"} from the Goalfinity website</td></tr>'
             f'{cells}'
             f'<tr><td colspan="2" style="padding:16px 12px;font-size:12px;color:#64748b">Sent by {escape(EMAIL_FROM_NAME)} website. '
             f'Reply directly to <a href="mailto:{escape(e["email"])}">{escape(e["email"])}</a> or view it in the admin inbox.</td></tr>'

@@ -3,6 +3,9 @@ import { CareersBento } from "../components/home/CareersBento";
 import { InstituteShowcase } from "../components/home/InstituteShowcase";
 import { OnlineBridge } from "../components/home/OnlineBridge";
 import { PlacementStories } from "../components/home/PlacementStories";
+import { AboutGroup, VisionMission, WhyGoalfinity } from "../components/group/AboutGroup";
+import { FounderDesk } from "../components/group/FounderDesk";
+import { ChooseJourney } from "../components/group/ChooseJourney";
 import { Marquee } from "../components/site/Marquee";
 import { Offices } from "../components/site/Offices";
 import { EnquirySection } from "../components/site/EnquirySection";
@@ -12,10 +15,15 @@ export default function Home() {
     <main data-testid="home-page">
       <HomeHero />
       <div className="mt-20 sm:mt-24"><Marquee /></div>
+      <AboutGroup />
+      <VisionMission />
+      <WhyGoalfinity />
       <CareersBento />
       <InstituteShowcase />
       <OnlineBridge />
       <PlacementStories />
+      <FounderDesk />
+      <ChooseJourney />
       <Offices />
       <EnquirySection defaultVertical="careers" />
     </main>

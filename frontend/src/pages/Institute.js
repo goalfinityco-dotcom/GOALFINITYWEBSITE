@@ -6,6 +6,8 @@ import { Reveal, Eyebrow } from "../components/site/Motion";
 import { EnquirySection } from "../components/site/EnquirySection";
 import { PlacementStories } from "../components/home/PlacementStories";
 import { scrollToId } from "../components/site/SmoothScroll";
+import { BookSessionButton } from "../components/site/BookSession";
+import { InstituteLogo } from "../components/site/Brand";
 import { INSTITUTE_PARTS, PROGRAMS, JOURNEY, INSTITUTE_FAQ } from "../data/content";
 
 const MODES = [
@@ -57,8 +59,9 @@ const Features = () => (
 export default function Institute() {
   return (
     <main data-testid="institute-page">
-      <PageHero tid="institute-hero" tone="green" accent="#1E9A4A" eyebrow="Goalfinity Institute of Professional Studies · Ahmedabad & Online" lines={["Skill up.", "Stand out.", <span key="s" className="text-[#1E9A4A]">Succeed.</span>]} lead="One vision. Many paths. Endless impact. Industry programs in IT, business, banking and professional education — with classroom coaching in Ahmedabad, an online mode for international students and a 100% Job Placement / Career Guarantee Program." image="/media/lecture.jpg" imageAlt="Students in a lecture hall">
-        <button onClick={() => scrollToId("enquire")} data-testid="institute-hero-enquire-btn" className="group inline-flex items-center gap-2 rounded-full bg-[#1E9A4A] px-7 py-4 text-[15px] font-semibold text-white transition-[background-color] duration-300 hover:bg-[#0F1F5C]">Talk to a Student Counselor <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" /></button>
+      <PageHero tid="institute-hero" logo={<InstituteLogo className="h-28 sm:h-32" />} tone="green" accent="#1E9A4A" eyebrow="Goalfinity Institute of Professional Studies · Ahmedabad & Online" lines={["Skill up.", "Stand out.", <span key="s" className="text-[#1E9A4A]">Succeed.</span>]} lead="One vision. Many paths. Endless impact. Industry programs in IT, business, banking and professional education — with classroom coaching in Ahmedabad, an online mode for international students and a 100% Job Placement / Career Guarantee Program." image="/media/lecture.jpg" imageAlt="Students in a lecture hall">
+        <BookSessionButton vertical="institute" tid="institute-book-session-btn" />
+        <button onClick={() => scrollToId("enquire")} data-testid="institute-hero-enquire-btn" className="group inline-flex items-center gap-2 rounded-full border border-[#CFE9D8] bg-white px-7 py-4 text-[15px] font-semibold text-[#0F1F5C] transition-[border-color] duration-300 hover:border-[#1E9A4A]">Enquire for fees <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" /></button>
       </PageHero>
       <section className="mx-auto grid max-w-[1360px] gap-5 px-5 py-20 sm:px-8 md:grid-cols-2 md:py-28">
         {MODES.map((m, i) => (

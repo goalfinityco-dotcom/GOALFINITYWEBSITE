@@ -6,8 +6,9 @@ import { HeaderBrand } from "./Brand";
 
 const NAV = [
   { to: "/", label: "Home", id: "home" },
+  { to: "/about", label: "About", id: "about" },
   { to: "/careers", label: "Careers · USA", id: "careers", dot: "bg-[#2480F1]" },
-  { to: "/institute", label: "Institute · India & Online", id: "institute", dot: "bg-[#1E9A4A]" },
+  { to: "/institute", label: "Institute", id: "institute", dot: "bg-[#1E9A4A]" },
   { to: "/contact", label: "Contact", id: "contact" },
 ];
 

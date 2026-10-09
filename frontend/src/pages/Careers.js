@@ -5,6 +5,8 @@ import { EnquirySection } from "../components/site/EnquirySection";
 import { Marquee } from "../components/site/Marquee";
 import { PlacementStories } from "../components/home/PlacementStories";
 import { scrollToId } from "../components/site/SmoothScroll";
+import { BookSessionButton } from "../components/site/BookSession";
+import { CareersLogo } from "../components/site/Brand";
 import { CAREERS_PILLARS } from "../data/content";
 
 const FOR_WHO = [
@@ -41,8 +43,9 @@ const Pillar = ({ p, i }) => (
 export default function Careers() {
   return (
     <main data-testid="careers-page">
-      <PageHero tid="careers-hero" eyebrow="Goalfinity Careers · USA" lines={["Land the role.", <span key="b">We stay <span className="text-[#2480F1]">beside you.</span></span>]} lead="Career services built for international students in the USA. Profile building, 80–100 targeted applications, technical and interview mentorship, OPT / STEM OPT guidance and re-employment support within the service period." image="/media/corporate.jpg" imageAlt="Professionals collaborating in a US office">
-        <button onClick={() => scrollToId("enquire")} data-testid="careers-hero-enquire-btn" className="group inline-flex items-center gap-2 rounded-full bg-[#0B3F9E] px-7 py-4 text-[15px] font-semibold text-white transition-[background-color] duration-300 hover:bg-[#2480F1]">Book a free consultation <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" /></button>
+      <PageHero tid="careers-hero" logo={<CareersLogo className="h-14 sm:h-16" />} eyebrow="Goalfinity Careers · USA" lines={["Land the role.", <span key="b">We stay <span className="text-[#2480F1]">beside you.</span></span>]} lead="Career services built for international students in the USA. Profile building, 80–100 targeted applications, technical and interview mentorship, OPT / STEM OPT guidance and re-employment support within the service period." image="/media/corporate.jpg" imageAlt="Professionals collaborating in a US office">
+        <BookSessionButton vertical="careers" tid="careers-book-session-btn" />
+        <button onClick={() => scrollToId("enquire")} data-testid="careers-hero-enquire-btn" className="group inline-flex items-center gap-2 rounded-full border border-[#C9D6EC] bg-white px-7 py-4 text-[15px] font-semibold text-[#0A1B3D] transition-[border-color] duration-300 hover:border-[#0B3F9E]">Send an enquiry <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" /></button>
       </PageHero>
       <section className="mx-auto max-w-[1360px] px-5 py-20 sm:px-8 md:py-28">
         <Reveal><Eyebrow>Who it's for</Eyebrow></Reveal>

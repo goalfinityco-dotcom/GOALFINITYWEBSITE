@@ -57,6 +57,10 @@ class EnquiryIn(BaseModel):
     interest: Optional[str] = Field(default=None, max_length=120)
     location: Optional[str] = Field(default=None, max_length=60)
     message: Optional[str] = Field(default=None, max_length=2000)
+    kind: Literal["enquiry", "session"] = "enquiry"
+    preferred_date: Optional[str] = Field(default=None, max_length=20)
+    preferred_time: Optional[str] = Field(default=None, max_length=60)
+    session_mode: Optional[str] = Field(default=None, max_length=40)
 
     @field_validator("email")
     @classmethod
@@ -75,6 +79,10 @@ class Enquiry(BaseDocument):
     interest: Optional[str] = None
     location: Optional[str] = None
     message: Optional[str] = None
+    kind: str = "enquiry"
+    preferred_date: Optional[str] = None
+    preferred_time: Optional[str] = None
+    session_mode: Optional[str] = None
     status: str = "new"
     email_status: str = "pending"
     ip: Optional[str] = Field(default=None, exclude=True)
