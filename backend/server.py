@@ -18,7 +18,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel, BeforeValidator, ConfigDict, Field, field_validator
 from starlette.middleware.cors import CORSMiddleware
 
-from emailer import send_email, enquiry_email
+from emailer import send_email, enquiry_email, student_reply_email
 from digest import make_router as make_digest_router
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -88,6 +88,7 @@ class Enquiry(BaseDocument):
     source_page: Optional[str] = None
     status: str = "new"
     email_status: str = "pending"
+    auto_reply_status: str = "not_sent"
     ip: Optional[str] = Field(default=None, exclude=True)
     created_at: str
 
@@ -202,6 +203,26 @@ async def notify_enquiry(enquiry_id: ObjectId, doc: dict):
         logger.error(f"Enquiry email failed: {e}")
         status = "failed"
     await db.enquiries.update_one({"_id": enquiry_id}, {"$set": {"email_status": status}})
+
+
+@api.post("/enquiries/{enquiry_id}/send-thank-you")
+async def send_thank_you(enquiry_id: str, user=Depends(get_current_user)):
+    if not ObjectId.is_valid(enquiry_id):
+        raise HTTPException(404, "Not found")
+    doc = await db.enquiries.find_one({"_id": ObjectId(enquiry_id)})
+    if not doc:
+        raise HTTPException(404, "Not found")
+    if doc.get("auto_reply_status") == "sent":
+        raise HTTPException(409, "Thank-you email already sent to this student")
+    subject, html = student_reply_email(doc)
+    try:
+        await send_email(to=doc["email"], subject=subject, html=html, retries=0)
+    except Exception as e:
+        logger.error(f"Thank-you email failed: {e}")
+        await db.enquiries.update_one({"_id": doc["_id"]}, {"$set": {"auto_reply_status": "failed"}})
+        raise HTTPException(502, "Could not send the email right now. Please try again in a minute.")
+    await db.enquiries.update_one({"_id": doc["_id"]}, {"$set": {"auto_reply_status": "sent", "auto_reply_sent_at": datetime.now(timezone.utc).isoformat(), "auto_reply_by": user["email"]}})
+    return {"ok": True}
 
 
 @api.post("/enquiries")

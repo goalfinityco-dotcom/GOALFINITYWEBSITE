@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 import { http, formatApiError } from "../../lib/api";
 import { CAREERS_INTERESTS, INSTITUTE_INTERESTS } from "../../data/content";
+import { NextSteps } from "./ThankYou";
 
 const VERTICALS = [
   { id: "careers", label: "Goalfinity Careers", sub: "I'm in the USA (F-1 / OPT / STEM OPT)", ring: "ring-[#2480F1] bg-[#EAF3FF]", dot: "bg-[#2480F1]" },
@@ -12,11 +13,11 @@ const VERTICALS = [
 const LOCATIONS = ["USA", "India", "Other country"];
 const field = "w-full rounded-2xl border border-[#D9E1EE] bg-white px-4 py-3.5 text-[15px] text-[#0A1B3D] placeholder:text-[#6B7890] outline-none transition-[border-color,box-shadow] duration-200 focus:border-[#2480F1] focus:shadow-[0_0_0_4px_rgba(36,128,241,0.15)]";
 
-const Success = ({ onReset }) => (
+const Success = ({ onReset, vertical, name }) => (
   <motion.div data-testid="enquiry-success" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="flex min-h-[420px] flex-col items-start justify-center gap-4 p-2">
     <CheckCircle2 className="h-12 w-12 text-[#1E9A4A]" />
-    <h3 className="font-display text-3xl font-semibold tracking-tight">Thank you, we've got it.</h3>
-    <p className="max-w-md text-[#3B4A66]">Our team will reach out within one business day with next steps and the current fee structure. For anything urgent, WhatsApp or call us.</p>
+    <h3 className="font-display text-3xl font-semibold tracking-tight">Thank you{name ? `, ${name}` : ""}. We've got it.</h3>
+    <NextSteps vertical={vertical} />
     <button data-testid="enquiry-reset-btn" onClick={onReset} className="mt-2 text-sm font-semibold text-[#0B3F9E] underline underline-offset-4">Send another enquiry</button>
   </motion.div>
 );
@@ -39,7 +40,7 @@ export const EnquiryForm = ({ defaultVertical = "careers", defaultInterest = "" 
     }
   };
 
-  if (state.done) return <Success onReset={() => { setForm(init); setState({ loading: false, error: "", done: false }); }} />;
+  if (state.done) return <Success vertical={form.vertical} name={form.name.trim().split(" ")[0]} onReset={() => { setForm(init); setState({ loading: false, error: "", done: false }); }} />;
 
   return (
     <form data-testid="enquiry-form" onSubmit={submit} className="space-y-5">

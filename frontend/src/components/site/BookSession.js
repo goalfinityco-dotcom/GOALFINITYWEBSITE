@@ -3,6 +3,7 @@ import { CalendarCheck, CheckCircle2, Loader2 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 import { http, formatApiError } from "../../lib/api";
 import { CAREERS_INTERESTS, INSTITUTE_INTERESTS } from "../../data/content";
+import { NextSteps } from "./ThankYou";
 
 const CFG = {
   careers: { tz: "US Central Time (CT)", slots: ["9:00 – 11:00 AM CT", "11:00 AM – 1:00 PM CT", "2:00 – 4:00 PM CT", "4:00 – 6:00 PM CT"], modes: ["Video call", "Phone call"], topics: CAREERS_INTERESTS, location: "USA", btn: "bg-[#0B3F9E] hover:bg-[#2480F1]" },
@@ -65,7 +66,8 @@ export const BookSessionButton = ({ vertical, tid, className = "" }) => {
           <div data-testid="session-success" className="flex flex-col items-start gap-3 py-6">
             <CheckCircle2 className="h-10 w-10 text-[#1E9A4A]" />
             <p className="font-display text-xl font-semibold">Session requested.</p>
-            <p className="text-[15px] text-[#3B4A66]">We'll confirm your slot within one business day.</p>
+            <p className="text-[15px] text-[#3B4A66]">Thank you! We'll confirm your exact slot within one business day.</p>
+            <NextSteps vertical={vertical} />
           </div>
         ) : <SessionForm vertical={vertical} onDone={() => setDone(true)} />}
       </DialogContent>

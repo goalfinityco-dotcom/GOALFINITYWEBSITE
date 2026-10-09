@@ -1,5 +1,6 @@
 import os
 import re
+import asyncio
 import ipaddress
 import logging
 import httpx
@@ -87,20 +88,25 @@ def _assert_safe_email(subject: str, html: str) -> None:
                 raise ValueError(f"Anchor text {m.group(1)!r} != real link host {real!r} (G3)")
 
 
-async def send_email(*, to: str, subject: str, html: str) -> str:
+async def send_email(*, to: str, subject: str, html: str, retries: int = 3) -> str:
     _assert_safe_email(subject, html)
     payload = {"to": [to], "subject": subject, "html": html, "from_name": EMAIL_FROM_NAME}
-    async with httpx.AsyncClient(timeout=30) as client:
-        resp = await client.post(f"{EMAIL_BASE_URL}/api/v1/email/send",
-                                 headers={"X-Email-Key": EMAIL_KEY}, json=payload)
-    if resp.status_code >= 400:
+    for attempt in range(retries + 1):
+        async with httpx.AsyncClient(timeout=30) as client:
+            resp = await client.post(f"{EMAIL_BASE_URL}/api/v1/email/send",
+                                     headers={"X-Email-Key": EMAIL_KEY}, json=payload)
+        if resp.status_code < 400:
+            return resp.json().get("id")
         try:
             info = resp.json()
         except ValueError:
             info = {}
-        logger.warning(f"Email send refused ({resp.status_code}) {info.get('code', '')}: {info.get('message', resp.text)}")
-        raise RuntimeError(info.get("code") or f"http_{resp.status_code}")
-    return resp.json().get("id")
+        code = info.get("code") or f"http_{resp.status_code}"
+        if (code == "rate_limited" or resp.status_code == 429) and attempt < retries:
+            await asyncio.sleep(20 * (attempt + 1))
+            continue
+        logger.warning(f"Email send refused ({resp.status_code}) {code}: {info.get('message', resp.text)}")
+        raise RuntimeError(code)
 
 
 VERTICAL_LABEL = {"careers": "Goalfinity Careers (USA)", "institute": "Goalfinity Institute (Ahmedabad / Online)", "unsure": "Not sure yet"}
@@ -128,3 +134,44 @@ def enquiry_email(e: dict) -> tuple[str, str]:
             f'Reply directly to <a href="mailto:{escape(e["email"])}">{escape(e["email"])}</a> or view it in the admin inbox.</td></tr>'
             f'</table></td></tr></table>')
     return subject, html
+
+
+_NAME_SAFE = re.compile(r"[^A-Za-z\u00C0-\u024F\u0900-\u097F\u0A80-\u0AFF .'-]")
+
+REPLY_COPY = {
+    "careers": ("Goalfinity Careers", "A Goalfinity Careers advisor will review your details and contact you within one business day to understand your profile, visa timeline and target roles.",
+                ["We review your resume, skills and OPT / STEM OPT timeline.", "An advisor calls or messages you to discuss your goals.", "We share the right support plan and fee structure for you."]),
+    "institute": ("Goalfinity Institute", "A Goalfinity Institute Student Counselor will contact you within one business day to help you choose the right program and batch.",
+                  ["We look at your background and the program you're interested in.", "A counselor calls or messages you to answer your questions.", "We share batch timings (classroom or online) and the fee structure."]),
+    "unsure": ("Goalfinity", "Our team will contact you within one business day to understand your goals and suggest the right path, Goalfinity Careers or Goalfinity Institute.",
+               ["We review what you've shared with us.", "A team member calls or messages you to understand your goals.", "We recommend the right next step for you."]),
+}
+
+
+def student_reply_email(e: dict) -> tuple[str, str]:
+    brand, lead, steps = REPLY_COPY.get(e.get("vertical"), REPLY_COPY["unsure"])
+    first = _NAME_SAFE.sub("", re.sub(r"<[^>]*>", "", (e.get("name") or "")).strip().split(" ")[0])[:30] or "there"
+    is_session = e.get("kind") == "session"
+    subject = f"We've received your {'session request' if is_session else 'enquiry'} - {brand}"
+    session_line = ""
+    if is_session:
+        session_line = (f'<tr><td style="padding:4px 12px 12px;font-size:14px;color:#0f172a">Requested slot: <b>{escape(e.get("preferred_date") or "")}, {escape(e.get("preferred_time") or "")}</b>'
+                        f' ({escape(e.get("session_mode") or "")}). We will confirm the exact time with you.</td></tr>')
+    step_rows = "".join(f'<tr><td style="padding:6px 12px;font-size:14px;color:#0f172a"><b style="color:#c98a00">{i}.</b> {escape(s)}</td></tr>' for i, s in enumerate(steps, 1))
+    html = (
+        '<table role="presentation" width="100%" style="font-family:Arial,sans-serif;background:#f4f6fb;padding:24px"><tr><td>'
+        '<table role="presentation" width="600" style="background:#ffffff;border-radius:12px;padding:12px">'
+        f'<tr><td style="padding:12px;font-size:20px;font-weight:bold;color:#0b3f9e">Thank you, {escape(first)}!</td></tr>'
+        f'<tr><td style="padding:0 12px 12px;font-size:15px;line-height:22px;color:#334155">{escape(lead)}</td></tr>'
+        f'{session_line}'
+        '<tr><td style="padding:12px 12px 4px;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#c98a00;font-weight:bold">What happens next</td></tr>'
+        f'{step_rows}'
+        '<tr><td style="padding:16px 12px 4px;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#c98a00;font-weight:bold">Need us sooner? WhatsApp or call</td></tr>'
+        '<tr><td style="padding:6px 12px;font-size:14px;color:#0f172a">USA: <a href="https://wa.me/16462123340" style="color:#0b3f9e;font-weight:bold">WhatsApp +1 646 212 3340</a></td></tr>'
+        '<tr><td style="padding:6px 12px;font-size:14px;color:#0f172a">India: <a href="https://wa.me/919909852323" style="color:#1e9a4a;font-weight:bold">WhatsApp +91 99098 52323</a></td></tr>'
+        '<tr><td style="padding:6px 12px;font-size:14px;color:#0f172a">Email: <a href="mailto:Info@goalfinity.co" style="color:#0b3f9e">Info@goalfinity.co</a></td></tr>'
+        '<tr><td style="padding:20px 12px 8px;font-size:14px;color:#334155">Warm regards,<br><b>Team Goalfinity</b><br>Your Goals. Our Commitment. Your Future.</td></tr>'
+        '<tr><td style="padding:8px 12px;font-size:12px;color:#64748b">You received this because you contacted us through <a href="https://www.goalfinity.co" style="color:#64748b">www.goalfinity.co</a>. If this wasn\'t you, you can ignore this email.</td></tr>'
+        '</table></td></tr></table>')
+    return subject, html
+

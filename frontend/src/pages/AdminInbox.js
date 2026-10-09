@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { toast } from "sonner";
-import { LogOut, Mail, MapPinned, Phone, RefreshCw, Trash2, Download } from "lucide-react";
+import { LogOut, Mail, MapPinned, Phone, RefreshCw, Trash2, Download, Send } from "lucide-react";
 import { http } from "../lib/api";
 import { useAuth } from "../context/AuthContext";
 import { Seo } from "../components/site/Seo";
@@ -34,7 +34,7 @@ const VFILTERS = [{ id: "", l: "All" }, { id: "careers", l: "Careers" }, { id: "
 const VBADGE = { careers: "bg-[#EAF3FF] text-[#0B3F9E]", institute: "bg-[#EAF7EF] text-[#146B34]", unsure: "bg-[#FFF6E5] text-[#8A5300]" };
 const EBADGE = { sent: "text-[#146B34]", failed: "text-red-600", pending: "text-[#3B4A66]" };
 
-const Row = ({ e, onStatus, onDelete }) => (
+const Row = ({ e, onStatus, onDelete, onThank }) => (
   <tr data-testid={`enquiry-row-${e.id}`} className="border-t border-[#E3E8F2] align-top">
     <td className="p-4"><p className="font-semibold">{e.name}</p><p className="mt-1 text-xs text-[#3B4A66]">{new Date(e.created_at).toLocaleString()}</p><p data-testid={`enquiry-source-${e.id}`} className="mt-2 inline-flex items-center gap-1 rounded-full bg-[#F7F9FC] px-2.5 py-1 text-xs text-[#0B3F9E]"><MapPinned className="h-3 w-3" />{pageLabel(e.source_page)}</p></td>
     <td className="p-4 text-sm">
@@ -48,6 +48,8 @@ const Row = ({ e, onStatus, onDelete }) => (
         {STATUSES.map((s) => <option key={s} value={s}>{s}</option>)}
       </select>
       <p className={`mt-2 text-xs ${EBADGE[e.email_status] || ""}`}>email: {e.email_status}</p>
+      <p data-testid={`enquiry-autoreply-${e.id}`} className={`text-xs ${EBADGE[e.auto_reply_status] || "text-[#3B4A66]"}`}>thank-you: {e.auto_reply_status === "sent" ? "sent" : e.auto_reply_status === "failed" ? "failed" : "not sent"}</p>
+      {e.auto_reply_status !== "sent" && <button data-testid={`enquiry-thank-${e.id}`} onClick={() => onThank(e.id)} className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-[#EAF7EF] px-3 py-1.5 text-xs font-semibold text-[#146B34] hover:bg-[#D3F0DE]"><Send className="h-3 w-3" /> Send thank-you email</button>}
     </td>
     <td className="p-4"><button data-testid={`enquiry-delete-${e.id}`} onClick={() => onDelete(e.id)} className="rounded-full p-2 text-[#3B4A66] hover:bg-red-50 hover:text-red-600" aria-label="Delete"><Trash2 className="h-4 w-4" /></button></td>
   </tr>
@@ -80,6 +82,15 @@ export default function AdminInbox() {
     setItems((xs) => xs.map((x) => (x.id === id ? { ...x, status } : x)));
     toast.success("Status updated");
   };
+  const onThank = async (id) => {
+    try {
+      await http.post(`/enquiries/${id}/send-thank-you`);
+      setItems((xs) => xs.map((x) => (x.id === id ? { ...x, auto_reply_status: "sent" } : x)));
+      toast.success("Thank-you email sent to the student");
+    } catch (err) {
+      toast.error(err.response?.data?.detail || "Could not send the email");
+    }
+  };
   const onDelete = async (id) => {
     if (!window.confirm("Delete this enquiry?")) return;
     await http.delete(`/enquiries/${id}`);
@@ -104,7 +115,7 @@ export default function AdminInbox() {
       <div className="mt-6 overflow-x-auto rounded-[24px] border border-[#E3E8F2] bg-white">
         <table className="w-full min-w-[900px] text-left" data-testid="enquiries-table">
           <thead className="bg-[#F7F9FC] text-xs uppercase tracking-wider text-[#3B4A66]"><tr><th className="p-4">Name</th><th className="p-4">Contact</th><th className="p-4">Interest</th><th className="p-4">Message</th><th className="p-4">Status</th><th className="p-4" /></tr></thead>
-          <tbody>{shown.map((e) => <Row key={e.id} e={e} onStatus={onStatus} onDelete={onDelete} />)}</tbody>
+          <tbody>{shown.map((e) => <Row key={e.id} e={e} onStatus={onStatus} onDelete={onDelete} onThank={onThank} />)}</tbody>
         </table>
         {!items.length && !loading && <p data-testid="enquiries-empty" className="p-10 text-center text-[#3B4A66]">No enquiries yet.</p>}
       </div>
