@@ -23,6 +23,7 @@ User choices: enquiry form saved to admin inbox + emailed to Info@goalfinity.co,
 - Admin login + inbox (filter by vertical, status update, delete, email status)
 - Placement stories wall (SAMPLE data, data/stories.js): home = all, Careers page = careers only, Institute page = institute + online
 - Program detail pages /institute/programs/:slug (syllabus 5 phases, tools, batch schedule, outcomes, enquiry pre-filled with program) — SAMPLE syllabus/schedule in data/programDetails.js
+- 2026-10-09: Weekly enquiry digest — .emergent/crons.yml (Mondays 9:00 IST) -> POST /api/cron/weekly-digest (Bearer WEBHOOK_CRON_SECRET, idempotent via cron_runs.run_id, background send) emails last 7 days by vertical/page + latest 10 to ENQUIRY_NOTIFY_EMAIL (backend/digest.py)
 - 2026-10-09: Admin "Download CSV" — exports currently shown enquiries (vertical + page filters), Excel-friendly UTF-8 with BOM, formula-injection safe (lib/exportCsv.js)
 - 2026-10-09: Enquiry source tracking — source_page saved with every enquiry/session, shown per row + "Enquiries by page" summary chips (click to filter) in admin, included in notification email
 - 2026-10-09: More cities — Atlanta, Seattle, Los Angeles, Phoenix (careers) and Gandhinagar, Vadodara course pages (online or Ahmedabad classroom; 9 course pages generated from COURSE_BASE x COURSE_CITIES)

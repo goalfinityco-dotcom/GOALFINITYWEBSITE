@@ -19,6 +19,7 @@ from pydantic import BaseModel, BeforeValidator, ConfigDict, Field, field_valida
 from starlette.middleware.cors import CORSMiddleware
 
 from emailer import send_email, enquiry_email
+from digest import make_router as make_digest_router
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -251,6 +252,7 @@ async def startup():
     await db.users.create_index("email", unique=True)
     await db.login_attempts.create_index("identifier")
     await db.enquiries.create_index("created_at")
+    await db.cron_runs.create_index("run_id", unique=True)
     email, pw = os.environ["ADMIN_EMAIL"].lower(), os.environ["ADMIN_PASSWORD"]
     existing = await db.users.find_one({"email": email})
     if existing is None:
@@ -261,6 +263,7 @@ async def startup():
 
 
 app.include_router(api)
+app.include_router(make_digest_router(db))
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
