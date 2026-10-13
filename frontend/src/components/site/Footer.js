@@ -40,7 +40,7 @@ export const Footer = () => (
         <div className="lg:col-span-2">
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/60">Explore</p>
           <ul className="mt-3 space-y-2 text-[15px]">
-            <li><Link to="/about" data-testid="footer-about-link" className="link-underline">About & Founder</Link></li>
+            <li><Link to="/#founder" data-testid="footer-about-link" className="link-underline">About & Founder</Link></li>
             <li><Link to="/careers" data-testid="footer-careers-link" className="link-underline">Goalfinity Careers</Link></li>
             <li><Link to="/institute" data-testid="footer-institute-link" className="link-underline">Goalfinity Institute</Link></li>
             <li><Link to="/contact" data-testid="footer-contact-link" className="link-underline">Contact & enquiry</Link></li>

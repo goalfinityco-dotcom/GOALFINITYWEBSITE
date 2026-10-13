@@ -1,5 +1,5 @@
 import "@/App.css";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Toaster } from "./components/ui/sonner";
 import { AuthProvider } from "./context/AuthContext";
 import { SmoothScroll } from "./components/site/SmoothScroll";
@@ -11,7 +11,6 @@ import Careers from "./pages/Careers";
 import Institute from "./pages/Institute";
 import Contact from "./pages/Contact";
 import ProgramDetail from "./pages/ProgramDetail";
-import About from "./pages/About";
 import CareerCity from "./pages/CareerCity";
 import InstituteCourseCity from "./pages/InstituteCourseCity";
 import AdminLogin from "./pages/AdminLogin";
@@ -26,7 +25,7 @@ const Shell = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/about" element={<Navigate to="/" replace />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/institute" element={<Institute />} />
         <Route path="/institute/programs/:slug" element={<ProgramDetail />} />
