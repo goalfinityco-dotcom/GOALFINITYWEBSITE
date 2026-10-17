@@ -25,7 +25,7 @@ export const PathCards = () => (
             <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-white/85">For international students in the USA: end-to-end job search support, from ATS resume to offer letter and re-employment.</p>
           </div>
           <div className="relative mt-8 flex flex-wrap items-center justify-between gap-4">
-            <div className="flex flex-wrap gap-2"><Chip light icon={Briefcase}>OPT / STEM OPT</Chip><Chip light icon={MapPin}>Harrisonville, MO</Chip></div>
+            <div className="flex flex-wrap gap-2"><Chip light icon={Briefcase}>OPT / STEM OPT</Chip><Chip light icon={MapPin}>Lanham, MD</Chip></div>
             <span className="grid h-12 w-12 place-items-center rounded-full bg-white text-[#0B3F9E] transition-transform duration-500 group-hover:rotate-45"><ArrowUpRight className="h-5 w-5" /></span>
           </div>
         </Link>

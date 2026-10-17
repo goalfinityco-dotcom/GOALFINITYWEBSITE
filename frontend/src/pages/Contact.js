@@ -6,7 +6,7 @@ import { Seo } from "../components/site/Seo";
 export default function Contact() {
   return (
     <main data-testid="contact-page" className="pt-32 sm:pt-40">
-      <Seo path="/contact" title="Contact Goalfinity | Offices in Missouri, USA & Ahmedabad" description="Contact Goalfinity: USA office in Harrisonville, Missouri (+1 646 212 3340) and India office in Ahmedabad (+91 99098 52323). Email Info@goalfinity.co." />
+      <Seo path="/contact" title="Contact Goalfinity | Offices in Maryland, USA & Ahmedabad" description="Contact Goalfinity: USA office in Lanham, Maryland (+1 646 212 3340) and India office in Ahmedabad (+91 99098 52323). Email Info@goalfinity.co." />
       <div className="mx-auto max-w-[1360px] px-5 sm:px-8">
         <Eyebrow>Contact Goalfinity</Eyebrow>
         <h1 className="font-display mt-6 text-[12vw] font-bold leading-[0.95] tracking-[-0.035em] sm:text-7xl lg:text-[96px]">

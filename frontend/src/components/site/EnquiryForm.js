@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 import { http, formatApiError } from "../../lib/api";
 import { CAREERS_INTERESTS, INSTITUTE_INTERESTS } from "../../data/content";
 import { NextSteps } from "./ThankYou";
+import { validateEnquiry } from "../../lib/validate";
 
 const VERTICALS = [
   { id: "careers", label: "Goalfinity Careers", sub: "I'm in the USA (F-1 / OPT / STEM OPT)", ring: "ring-[#2480F1] bg-[#EAF3FF]", dot: "bg-[#2480F1]" },
@@ -26,14 +27,26 @@ export const EnquiryForm = ({ defaultVertical = "careers", defaultInterest = "" 
   const init = { name: "", email: "", phone: "", vertical: defaultVertical, interest: defaultInterest, location: defaultVertical === "careers" ? "USA" : "India", message: "" };
   const [form, setForm] = useState(init);
   const [state, setState] = useState({ loading: false, error: "", done: false });
-  const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
+  const [errors, setErrors] = useState({});
+  const set = (k) => (e) => {
+    setForm((f) => ({ ...f, [k]: e.target.value }));
+    setErrors((er) => (er[k] ? { ...er, [k]: undefined } : er));
+  };
+  const err = (k) => errors[k] && <p data-testid={`enquiry-${k}-error`} className="mt-1.5 px-1 text-xs text-red-600">{errors[k]}</p>;
+  const bad = (k) => (errors[k] ? " !border-red-400" : "");
   const interests = form.vertical === "institute" ? INSTITUTE_INTERESTS : form.vertical === "careers" ? CAREERS_INTERESTS : [...CAREERS_INTERESTS.slice(0, 1), ...INSTITUTE_INTERESTS.slice(0, 3)];
 
   const submit = async (e) => {
     e.preventDefault();
+    const found = validateEnquiry(form);
+    setErrors(found);
+    if (Object.keys(found).length) {
+      setState({ loading: false, error: "Please fix the highlighted fields.", done: false });
+      return;
+    }
     setState({ loading: true, error: "", done: false });
     try {
-      await http.post("/enquiries", { ...form, interest: form.interest || null, message: form.message || null, source_page: window.location.pathname });
+      await http.post("/enquiries", { ...form, name: form.name.trim(), email: form.email.trim(), phone: form.phone.trim(), interest: form.interest || null, message: form.message || null, source_page: window.location.pathname });
       setState({ loading: false, error: "", done: true });
     } catch (err) {
       setState({ loading: false, error: formatApiError(err.response?.data?.detail) || err.message, done: false });
@@ -43,7 +56,7 @@ export const EnquiryForm = ({ defaultVertical = "careers", defaultInterest = "" 
   if (state.done) return <Success vertical={form.vertical} name={form.name.trim().split(" ")[0]} onReset={() => { setForm(init); setState({ loading: false, error: "", done: false }); }} />;
 
   return (
-    <form data-testid="enquiry-form" onSubmit={submit} className="space-y-5">
+    <form data-testid="enquiry-form" noValidate onSubmit={submit} className="space-y-5">
       <div className="grid gap-3 sm:grid-cols-3">
         {VERTICALS.map((v) => (
           <button type="button" key={v.id} data-testid={`enquiry-vertical-${v.id}`} onClick={() => setForm((f) => ({ ...f, vertical: v.id, interest: "" }))} className={`rounded-2xl border border-[#D9E1EE] p-4 text-left transition-[box-shadow,background-color] duration-300 ${form.vertical === v.id ? `ring-2 ${v.ring}` : "bg-white hover:bg-[#F7F9FC]"}`}>
@@ -53,9 +66,9 @@ export const EnquiryForm = ({ defaultVertical = "careers", defaultInterest = "" 
         ))}
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
-        <input required minLength={2} data-testid="enquiry-name-input" className={field} placeholder="Full name" value={form.name} onChange={set("name")} />
-        <input required type="email" data-testid="enquiry-email-input" className={field} placeholder="Email address" value={form.email} onChange={set("email")} />
-        <input required minLength={6} data-testid="enquiry-phone-input" className={field} placeholder="Phone / WhatsApp (with country code)" value={form.phone} onChange={set("phone")} />
+        <div><input required maxLength={120} data-testid="enquiry-name-input" className={field + bad("name")} placeholder="Full name" value={form.name} onChange={set("name")} />{err("name")}</div>
+        <div><input required type="email" maxLength={160} data-testid="enquiry-email-input" className={field + bad("email")} placeholder="Email address" value={form.email} onChange={set("email")} />{err("email")}</div>
+        <div><input required type="tel" maxLength={30} data-testid="enquiry-phone-input" className={field + bad("phone")} placeholder="Phone / WhatsApp (with country code)" value={form.phone} onChange={set("phone")} />{err("phone")}</div>
         <select data-testid="enquiry-location-select" className={field} value={form.location} onChange={set("location")}>
           {LOCATIONS.map((l) => <option key={l} value={l}>I'm based in: {l}</option>)}
         </select>
@@ -64,7 +77,8 @@ export const EnquiryForm = ({ defaultVertical = "careers", defaultInterest = "" 
         <option value="">What are you interested in? (optional)</option>
         {interests.map((i) => <option key={i} value={i}>{i}</option>)}
       </select>
-      <textarea data-testid="enquiry-message-input" rows={4} className={`${field} resize-none`} placeholder="Tell us about your goals, degree, visa status or the course you want (optional)" value={form.message} onChange={set("message")} />
+      <textarea data-testid="enquiry-message-input" rows={4} maxLength={2000} className={`${field} resize-none${bad("message")}`} placeholder="Tell us about your goals, degree, visa status or the course you want (optional)" value={form.message} onChange={set("message")} />
+      {err("message")}
       {state.error && <p data-testid="enquiry-error" className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">{state.error}</p>}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <p className="text-sm text-[#3B4A66]">No fixed price list. We share fees after understanding your goals.</p>

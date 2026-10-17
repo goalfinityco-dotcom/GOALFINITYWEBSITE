@@ -64,6 +64,23 @@ class EnquiryIn(BaseModel):
     session_mode: Optional[str] = Field(default=None, max_length=40)
     source_page: Optional[str] = Field(default=None, max_length=200)
 
+    @field_validator("name")
+    @classmethod
+    def check_name(cls, v):
+        v = re.sub(r"\s+", " ", v).strip()
+        if len(v) < 2 or not re.search(r"[^\W\d_]", v) or re.search(r"[<>@/\{}\[\]=]", v):
+            raise ValueError("Please enter your full name")
+        return v
+
+    @field_validator("phone")
+    @classmethod
+    def check_phone(cls, v):
+        v = v.strip()
+        digits = re.sub(r"\D", "", v)
+        if not re.fullmatch(r"\+?[\d\s().-]+", v) or not 7 <= len(digits) <= 15:
+            raise ValueError("Please enter a valid phone number (7-15 digits, with country code)")
+        return v
+
     @field_validator("email")
     @classmethod
     def check_email(cls, v):
@@ -197,7 +214,7 @@ async def refresh(request: Request, response: Response):
 async def notify_enquiry(enquiry_id: ObjectId, doc: dict):
     try:
         subject, html = enquiry_email(doc)
-        await send_email(to=os.environ["ENQUIRY_NOTIFY_EMAIL"], subject=subject, html=html)
+        await send_email(to=os.environ["ENQUIRY_NOTIFY_EMAIL"], subject=subject, html=html, reply_to=doc["email"])
         status = "sent"
     except Exception as e:
         logger.error(f"Enquiry email failed: {e}")

@@ -3,11 +3,11 @@ export const CONTACT = {
   website: "www.goalfinity.co",
   usa: {
     label: "USA Office",
-    city: "Harrisonville, Missouri",
-    lines: ["117 South Lexington Street, Ste 100", "Harrisonville, MO 64701, USA"],
+    city: "Lanham, Maryland",
+    lines: ["4500 Forbes Boulevard, Suite 200", "Lanham, MD 20706, USA"],
     phone: "+1 646 212 3340",
     tel: "+16462123340",
-    tz: "America/Chicago",
+    tz: "America/New_York",
     serves: "Goalfinity Careers · International students across the US",
   },
   india: {

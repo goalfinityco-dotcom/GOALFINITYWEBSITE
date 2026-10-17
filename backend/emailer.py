@@ -3,16 +3,18 @@ import re
 import asyncio
 import ipaddress
 import logging
-import httpx
+import smtplib
+import ssl
+from email.message import EmailMessage
+from email.utils import formataddr, make_msgid
 from html import escape
 from html.parser import HTMLParser
 from urllib.parse import urlparse
 
 logger = logging.getLogger(__name__)
 
-EMAIL_BASE_URL = "https://integrations.emergentagent.com"
-EMAIL_KEY = os.environ["EMERGENT_EMAIL_KEY"]
-EMAIL_FROM_NAME = os.environ["EMAIL_FROM_NAME"]
+EMAIL_FROM_NAME = os.environ.get("EMAIL_FROM_NAME", "Goalfinity")
+EMAIL_FROM_ADDR = os.environ.get("SMTP_FROM_EMAIL") or os.environ.get("SMTP_USER", "no-reply@localhost")
 NOTIFY_TO = os.environ["ENQUIRY_NOTIFY_EMAIL"]
 
 _SHORTENERS = ("bit.ly", "tinyurl.com", "t.co", "is.gd", "cutt.ly", "goo.gl", "rebrand.ly")
@@ -88,25 +90,47 @@ def _assert_safe_email(subject: str, html: str) -> None:
                 raise ValueError(f"Anchor text {m.group(1)!r} != real link host {real!r} (G3)")
 
 
-async def send_email(*, to: str, subject: str, html: str, retries: int = 3) -> str:
+def _send_smtp(msg: EmailMessage) -> None:
+    host, port = os.environ["SMTP_HOST"], int(os.environ.get("SMTP_PORT", "587"))
+    secure = os.environ.get("SMTP_SECURE", "starttls").lower()  # ssl | starttls | none
+    ctx = ssl.create_default_context()
+    if secure == "ssl":
+        server = smtplib.SMTP_SSL(host, port, timeout=30, context=ctx)
+    else:
+        server = smtplib.SMTP(host, port, timeout=30)
+    with server:
+        if secure == "starttls":
+            server.starttls(context=ctx)
+        user, pw = os.environ.get("SMTP_USER"), os.environ.get("SMTP_PASSWORD")
+        if user and pw:
+            server.login(user, pw)
+        server.send_message(msg)
+
+
+async def send_email(*, to: str, subject: str, html: str, retries: int = 1, reply_to: str | None = None) -> str:
     _assert_safe_email(subject, html)
-    payload = {"to": [to], "subject": subject, "html": html, "from_name": EMAIL_FROM_NAME}
+    msg = EmailMessage()
+    msg["Subject"] = subject
+    msg["From"] = formataddr((EMAIL_FROM_NAME, EMAIL_FROM_ADDR))
+    msg["To"] = to
+    msg["Message-ID"] = make_msgid(domain=EMAIL_FROM_ADDR.split("@")[-1])
+    if reply_to:
+        msg["Reply-To"] = reply_to
+    msg.set_content(re.sub(r"<[^>]+>", " ", html))
+    msg.add_alternative(html, subtype="html")
     for attempt in range(retries + 1):
-        async with httpx.AsyncClient(timeout=30) as client:
-            resp = await client.post(f"{EMAIL_BASE_URL}/api/v1/email/send",
-                                     headers={"X-Email-Key": EMAIL_KEY}, json=payload)
-        if resp.status_code < 400:
-            return resp.json().get("id")
         try:
-            info = resp.json()
-        except ValueError:
-            info = {}
-        code = info.get("code") or f"http_{resp.status_code}"
-        if (code == "rate_limited" or resp.status_code == 429) and attempt < retries:
-            await asyncio.sleep(20 * (attempt + 1))
-            continue
-        logger.warning(f"Email send refused ({resp.status_code}) {code}: {info.get('message', resp.text)}")
-        raise RuntimeError(code)
+            await asyncio.to_thread(_send_smtp, msg)
+            return msg["Message-ID"]
+        except (smtplib.SMTPAuthenticationError, smtplib.SMTPRecipientsRefused):
+            logger.warning("SMTP send refused (auth/recipient)")
+            raise
+        except (smtplib.SMTPException, OSError) as exc:
+            if attempt < retries:
+                await asyncio.sleep(3 * (attempt + 1))
+                continue
+            logger.warning(f"SMTP send failed: {exc}")
+            raise RuntimeError("smtp_error") from exc
 
 
 VERTICAL_LABEL = {"careers": "Goalfinity Careers (USA)", "institute": "Goalfinity Institute (Classroom / Online)", "unsure": "Not sure yet"}

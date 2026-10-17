@@ -6,6 +6,7 @@ import { FounderDesk } from "../components/group/FounderDesk";
 import { ChooseJourney } from "../components/group/ChooseJourney";
 import { scrollToId } from "../components/site/SmoothScroll";
 import { GROUP } from "../data/group";
+import { Marquee } from "../components/site/Marquee";
 import { Seo } from "../components/site/Seo";
 
 export default function Home() {
@@ -33,6 +34,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <div className="mt-20 sm:mt-24"><Marquee /></div>
       <AboutGroup />
       <VisionMission />
       <FounderDesk full />
