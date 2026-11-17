@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Globe2, School } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Globe2, School, MonitorSmartphone, Building2, SlidersHorizontal, UserRoundCheck, Video, Wrench, FolderKanban, Compass, MicVocal, TrendingUp, Briefcase } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 import { PageHero } from "../components/site/PageHero";
 import { Reveal, Eyebrow } from "../components/site/Motion";
@@ -13,6 +13,21 @@ import { Seo, faqJsonLd } from "../components/site/Seo";
 const MODES = [
   { icon: School, t: "Classroom", d: "Classroom coaching with lab infrastructure and mentor-led, hands-on sessions.", img: "/media/lab.jpg" },
   { icon: Globe2, t: "Online · Worldwide", d: "The same programs and mentors, live online — open to international students in the USA and beyond.", img: "/media/online.jpg" },
+];
+
+const SERVICES = [
+  { icon: MonitorSmartphone, t: "Online & Hybrid Training Services" },
+  { icon: School, t: "Classroom-Based Coaching" },
+  { icon: Building2, t: "Corporate Training & Development" },
+  { icon: SlidersHorizontal, t: "Customized Learning Solutions" },
+  { icon: UserRoundCheck, t: "One-to-One Mentorship" },
+  { icon: Video, t: "Live Instructor-Led Sessions" },
+  { icon: Wrench, t: "Practical & Hands-On Training Support" },
+  { icon: FolderKanban, t: "Project-Based Learning Assistance" },
+  { icon: Compass, t: "Career Counselling & Guidance" },
+  { icon: MicVocal, t: "Interview Preparation & Readiness" },
+  { icon: TrendingUp, t: "Professional Skill Development" },
+  { icon: Briefcase, t: "Placement & Career Assistance" },
 ];
 
 let counter = 0;
@@ -83,6 +98,16 @@ export default function Institute() {
             {JOURNEY.map((j, i) => <span key={j} className="flex items-center gap-3"><span className="font-display text-2xl font-semibold text-[#0F1F5C] sm:text-4xl">{j}</span>{i < JOURNEY.length - 1 && <ArrowRight className="h-5 w-5 text-[#1E9A4A]" />}</span>)}
           </Reveal>
         </div>
+      </section>
+      <section className="mx-auto max-w-[1360px] px-5 py-20 sm:px-8 md:py-28" data-testid="institute-services-section">
+        <Reveal><Eyebrow tone="green">Our services</Eyebrow><h2 className="font-display mt-5 max-w-3xl text-4xl font-semibold leading-[1.02] tracking-tight text-[#0F1F5C] sm:text-6xl">Training that fits the way you learn.</h2></Reveal>
+        <Reveal>
+          <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {SERVICES.map((s) => (
+              <li key={s.t} className="flex items-center gap-3 rounded-2xl border border-[#E3E8F2] bg-white p-4 text-[15px] font-medium text-[#0F1F5C]"><span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[#EAF7EF] text-[#146B34]"><s.icon className="h-[18px] w-[18px]" /></span>{s.t}</li>
+            ))}
+          </ul>
+        </Reveal>
       </section>
       <section className="mx-auto max-w-[1360px] px-5 py-20 sm:px-8 md:py-28">
         <Reveal><Eyebrow tone="green">Program highlights · 30 features</Eyebrow><h2 className="font-display mt-5 max-w-3xl text-4xl font-semibold leading-[1.02] tracking-tight text-[#0F1F5C] sm:text-6xl">Learn, get hired and grow — in one program.</h2></Reveal>

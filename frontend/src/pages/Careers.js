@@ -1,4 +1,4 @@
-import { ArrowRight, Check, GraduationCap, Plane, BadgeCheck, Briefcase } from "lucide-react";
+import { ArrowRight, Check, GraduationCap, Plane, BadgeCheck, Briefcase, Send, Code, FileText, MessagesSquare, HandCoins, ClipboardCheck, UserCheck, Network, Github } from "lucide-react";
 import { PageHero } from "../components/site/PageHero";
 import { Reveal, Eyebrow } from "../components/site/Motion";
 import { EnquirySection } from "../components/site/EnquirySection";
@@ -9,6 +9,20 @@ import { BookSessionButton } from "../components/site/BookSession";
 import { CAREERS_PILLARS, CAREERS_FAQ } from "../data/content";
 import { Seo, faqJsonLd } from "../components/site/Seo";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
+
+const SERVICES = [
+  { icon: Send, t: "100 Targeted Job Applications Daily" },
+  { icon: Plane, t: "OPT & STEM OPT Career Guidance" },
+  { icon: Code, t: "Dedicated Technical Mentorship" },
+  { icon: FileText, t: "Resume Building & LinkedIn Optimization" },
+  { icon: MessagesSquare, t: "Live Interview Preparation & Support" },
+  { icon: HandCoins, t: "Salary Negotiation Assistance" },
+  { icon: ClipboardCheck, t: "Mock Interviews & Technical Assessments" },
+  { icon: UserCheck, t: "Dedicated Career Success Manager" },
+  { icon: Network, t: "Employer & Recruiter Networking" },
+  { icon: BadgeCheck, t: "End-to-End Job Placement Assistance" },
+  { icon: Github, t: "GitHub & Portfolio Building" },
+];
 
 const FOR_WHO = [
   { icon: GraduationCap, t: "F-1 students & recent grads", d: "Finishing a Master's or Bachelor's in the US and starting the job hunt." },
@@ -45,7 +59,7 @@ export default function Careers() {
   return (
     <main data-testid="careers-page">
       <Seo path="/careers" image="/og/og-careers.jpg" imageAlt="Goalfinity Careers: career services for international students in the USA" title="OPT & STEM OPT Job Search Support in the USA | Goalfinity" description="Goalfinity Careers helps international students in the USA with ATS resumes, 80–100 targeted job applications, interview mentorship and OPT / STEM OPT guidance." jsonLd={faqJsonLd(CAREERS_FAQ)} />
-      <PageHero tid="careers-hero" eyebrow="Goalfinity Careers · USA" lines={["Land the role.", <span key="b">We stay <span className="text-[#2480F1]">beside you.</span></span>]} lead="Career services built for international students in the USA. Profile building, 80–100 targeted applications, technical and interview mentorship, OPT / STEM OPT guidance and re-employment support within the service period." image="/media/corporate.jpg" imageAlt="Professionals collaborating in a US office">
+      <PageHero tid="careers-hero" eyebrow="Goalfinity Careers · USA" lines={["Land the role.", <span key="b">We stay <span className="text-[#2480F1]">beside you.</span></span>]} lead="Turn your qualifications into a compelling professional profile with personalized career support built for international students in the USA. From ATS-optimized resumes and LinkedIn positioning to targeted job-search strategies, technical interview preparation, and OPT/STEM OPT employment guidance, we help you take a more focused and confident approach to your career journey." image="/media/corporate.jpg" imageAlt="Professionals collaborating in a US office">
         <BookSessionButton vertical="careers" tid="careers-book-session-btn" />
         <button onClick={() => scrollToId("enquire")} data-testid="careers-hero-enquire-btn" className="group inline-flex items-center gap-2 rounded-full border border-[#C9D6EC] bg-white px-7 py-4 text-[15px] font-semibold text-[#0A1B3D] transition-[border-color] duration-300 hover:border-[#0B3F9E]">Send an enquiry <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" /></button>
       </PageHero>
@@ -64,6 +78,16 @@ export default function Careers() {
         </div>
       </section>
       <Marquee />
+      <section className="mx-auto max-w-[1360px] px-5 py-20 sm:px-8 md:py-28" data-testid="careers-services-section">
+        <Reveal><Eyebrow>What's included</Eyebrow><h2 className="font-display mt-5 max-w-3xl text-4xl font-semibold leading-[1.02] tracking-tight sm:text-6xl">Support that goes all the way to the offer.</h2></Reveal>
+        <Reveal>
+          <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {SERVICES.map((s) => (
+              <li key={s.t} className="flex items-center gap-3 rounded-2xl border border-[#E3E8F2] bg-white p-4 text-[15px] font-medium text-[#0A1B3D]"><span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[#EAF1FD] text-[#0B3F9E]"><s.icon className="h-[18px] w-[18px]" /></span>{s.t}</li>
+            ))}
+          </ul>
+        </Reveal>
+      </section>
       <section className="mx-auto max-w-[1360px] px-5 py-20 sm:px-8 md:py-28">
         <Reveal className="mb-6"><Eyebrow>Your career, fully supported · 4 stages</Eyebrow>
           <h2 className="font-display mt-5 max-w-3xl text-4xl font-semibold leading-[1.02] tracking-tight sm:text-6xl">Everything we do, stage by stage.</h2>

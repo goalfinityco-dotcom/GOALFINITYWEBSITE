@@ -191,7 +191,7 @@ def student_reply_email(e: dict) -> tuple[str, str]:
         '<tr><td style="padding:12px 12px 4px;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#c98a00;font-weight:bold">What happens next</td></tr>'
         f'{step_rows}'
         '<tr><td style="padding:16px 12px 4px;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#c98a00;font-weight:bold">Need us sooner? WhatsApp or call</td></tr>'
-        '<tr><td style="padding:6px 12px;font-size:14px;color:#0f172a">USA: <a href="https://wa.me/16462123340" style="color:#0b3f9e;font-weight:bold">WhatsApp +1 646 212 3340</a></td></tr>'
+        '<tr><td style="padding:6px 12px;font-size:14px;color:#0f172a">USA: <a href="https://wa.me/12024434729" style="color:#0b3f9e;font-weight:bold">WhatsApp +1 202 443 4729</a></td></tr>'
         '<tr><td style="padding:6px 12px;font-size:14px;color:#0f172a">India: <a href="https://wa.me/919909852323" style="color:#1e9a4a;font-weight:bold">WhatsApp +91 99098 52323</a></td></tr>'
         '<tr><td style="padding:6px 12px;font-size:14px;color:#0f172a">Email: <a href="mailto:Info@goalfinity.co" style="color:#0b3f9e">Info@goalfinity.co</a></td></tr>'
         '<tr><td style="padding:20px 12px 8px;font-size:14px;color:#334155">Warm regards,<br><b>Team Goalfinity</b><br>Your Goals. Our Commitment. Your Future.</td></tr>'
