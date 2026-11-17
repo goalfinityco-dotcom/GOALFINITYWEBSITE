@@ -5,6 +5,9 @@ import ipaddress
 import logging
 import smtplib
 import ssl
+import json
+import urllib.request
+import urllib.parse
 from email.message import EmailMessage
 from email.utils import formataddr, make_msgid
 from html import escape
@@ -90,9 +93,35 @@ def _assert_safe_email(subject: str, html: str) -> None:
                 raise ValueError(f"Anchor text {m.group(1)!r} != real link host {real!r} (G3)")
 
 
+def _oauth2_authstring(user: str) -> str:
+    """Fetch an app-only Microsoft 365 token and build the XOAUTH2 auth string."""
+    tenant = os.environ["SMTP_OAUTH_TENANT_ID"]
+    client = os.environ["SMTP_OAUTH_CLIENT_ID"]
+    secret = os.environ["SMTP_OAUTH_CLIENT_SECRET"]
+    data = urllib.parse.urlencode({
+        "client_id": client,
+        "client_secret": secret,
+        "scope": "https://outlook.office365.com/.default",
+        "grant_type": "client_credentials",
+    }).encode()
+    req = urllib.request.Request(
+        f"https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token", data=data)
+    with urllib.request.urlopen(req, timeout=20) as resp:
+        token = json.load(resp)["access_token"]
+    return f"user={user}\x01auth=Bearer {token}\x01\x01"
+
+
 def _send_smtp(msg: EmailMessage) -> None:
-    host, port = os.environ["SMTP_HOST"], int(os.environ.get("SMTP_PORT", "587"))
-    secure = os.environ.get("SMTP_SECURE", "starttls").lower()  # ssl | starttls | none
+    user = os.environ.get("SMTP_USER")
+    use_oauth = all(os.environ.get(k) for k in
+                    ("SMTP_OAUTH_TENANT_ID", "SMTP_OAUTH_CLIENT_ID", "SMTP_OAUTH_CLIENT_SECRET"))
+    if use_oauth:
+        # XOAUTH2 must use the authenticated submission endpoint.
+        host, port, secure = "smtp.office365.com", 587, "starttls"
+    else:
+        host = os.environ["SMTP_HOST"]
+        port = int(os.environ.get("SMTP_PORT", "587"))
+        secure = os.environ.get("SMTP_SECURE", "starttls").lower()  # ssl | starttls | none
     ctx = ssl.create_default_context()
     if secure == "ssl":
         server = smtplib.SMTP_SSL(host, port, timeout=30, context=ctx)
@@ -101,9 +130,14 @@ def _send_smtp(msg: EmailMessage) -> None:
     with server:
         if secure == "starttls":
             server.starttls(context=ctx)
-        user, pw = os.environ.get("SMTP_USER"), os.environ.get("SMTP_PASSWORD")
-        if user and pw:
-            server.login(user, pw)
+            server.ehlo()
+        if use_oauth:
+            server.auth("XOAUTH2", lambda challenge=None: _oauth2_authstring(user),
+                        initial_response_ok=True)
+        else:
+            pw = os.environ.get("SMTP_PASSWORD")
+            if user and pw:
+                server.login(user, pw)
         server.send_message(msg)
 
 

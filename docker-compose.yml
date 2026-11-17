@@ -1,0 +1,56 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      MONGO_URL: mongodb://mongo:27017
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        REACT_APP_BACKEND_URL: ""
+    restart: unless-stopped
+    ports:
+      - "3456:80"
+    depends_on:
+      - backend
+
+  # Runs the two scheduled emails (weekly digest + follow-up reminders), India time.
+  scheduler:
+    image: alpine:3.20
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      TZ: Asia/Kolkata
+    depends_on:
+      - backend
+    command:
+      - /bin/sh
+      - -c
+      - |
+        apk add --no-cache curl tzdata >/dev/null
+        cat > /etc/crontabs/root <<EOF
+        0 9 * * 1 curl -fsS -X POST -H "Authorization: Bearer $$WEBHOOK_CRON_SECRET" http://backend:8001/api/cron/weekly-digest
+        0 10 * * * curl -fsS -X POST -H "Authorization: Bearer $$WEBHOOK_CRON_SECRET" http://backend:8001/api/cron/followup-reminders
+        EOF
+        crond -f -l 2
+
+volumes:
+  mongo_data:
+
